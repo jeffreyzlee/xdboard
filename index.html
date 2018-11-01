@@ -4,10 +4,12 @@
 <head>
   <meta charset="utf-8">
   <title>xdboard</title>
+  <script src="https://cdn.jsdeliver.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 
 <body>
-  <h1>Links</h1>
+  <!--h1>Links</h1>
   <ul>
     <li><a href="../xdboard/index.html">Link to home</a></li>
     <li><a href="../xdboard/add.html">Link to adding food</a></li>
@@ -16,6 +18,153 @@
     <li><a href="../xdboard/settings.html">Link to setting</a></li>
     <li><a href="../xdboard/profile.html">Link to profile</a></li>
     <li><a href="../xdboard/logout.html">Link to logout</a></li>
-  </ul>
+  </ul-->
+
+  <div class="container">
+    <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; ">
+      <div class="col">
+        <b><</b>
+      </div>
+      <div class="col-6">
+        <b>November 1, 2018</b>
+      </div>
+      <div class="col" style="text-align: right">
+        <b>></b>
+      </div>
+    </div>
+
+    <div class="row">
+      <p>Calories Remaining:</p>
+    </div>
+
+    <div class="row">
+      <div class="CalText">
+        <div class="col">
+          <div class="row">
+            <p>2,480</p>
+          </div>
+          <div class="row">
+            <p>Goal</p>
+          </div>
+        </div>
+        <div class="col">
+          -
+        </div>
+        <div class="col">
+          <div class="row">
+            <p>1,600</p>
+          </div>
+          <div class="row">
+            <p>Food</p>
+          </div>
+        </div>
+        <div class="col">
+          =
+        </div>
+        <div class="col">
+          <div class="row">
+            <p>880</p>
+          </div>
+          <div class="row">
+            <p>Remaining</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="background-color: #62B6CB; color: White;">
+      <div class="col">
+        <b>Breakfast</b>
+      </div>
+      <div class="col">
+        <a href="/add.html">+</a>
+      </div>
+    </div>
+    <ul id="bfastList">
+      <li v-for="item in Breakfast">
+        <div class="row">
+          <div class="col">
+            {{item.name}} ({{item.quantity}})
+          </div>
+          <div class="col">
+            {{item.calories}} cal
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="row">some calculation for calories in JS
+    </div>
+
+    <div class="row" style="background-color: #62B6CB; color: White;">
+      <div class="col">
+        <b>Lunch</b>
+      </div>
+      <div class="col">
+        <a href="/add.html">+</a>
+      </div>
+    </div>
+    <ul id="lunchList">
+      <li v-for="item in Lunch">
+        <div class="row">
+          <div class="col">
+            {{item.name}} ({{item.quantity}})
+          </div>
+          <div class="col">
+            {{item.calories}} cal
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="row">some calculation for calories in JS
+    </div>
+
+    <div class="row" style="background-color: #62B6CB; color: White;">
+      <div class="col">
+        <b>Dinner</b>
+      </div>
+      <div class="col">
+        <a href="/add.html">+</a>
+      </div>
+    </div>
+    <ul id="dinnerList">
+      <li v-for="item in Dinner">
+        <div class="row">
+          <div class="col">
+            {{item.name}} ({{item.quantity}})
+          </div>
+          <div class="col">
+            {{item.calories}} cal
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="row">some calculation for calories in JS
+    </div>
+
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col">
+        <a href="/progress.html"></a>
+      </div>
+      <div class="col">
+        <a href="/profile.html"></a>
+      </div>
+    </div>
+  </div>
 </body>
+
+<script>
+  var homePage = new Vue({
+    el: '#homepage',
+    data: {
+      Breakfast: [],
+      Lunch: [],
+      Dinner[],
+    },
+  });
+</script>
 </html>

@@ -1,0 +1,13 @@
+.col-xs-4 {
+  border-style: solid;
+  border-width: 1px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.container {
+  width: 375px;
+  margin: auto;
+}

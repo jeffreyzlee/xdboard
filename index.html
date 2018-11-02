@@ -23,15 +23,15 @@ li {
 <body>
   <!--h1>Links</h1>
   <ul>
-    <li><a href="../xdboard/index.html">Link to home</a></li>
-    <li><a href="../xdboard/add.html">Link to adding food</a></li>
-    <li><a href="../xdboard/nutrition.html">Link to nutrition info</a></li>
-    <li><a href="../xdboard/foodnut.html">Link to food nutrition</a></li>
-    <li><a href="../xdboard/progress.html">Link to progress</a></li>
-    <li><a href="../xdboard/settings.html">Link to setting</a></li>
-    <li><a href="../xdboard/profile.html">Link to profile</a></li>
-    <li><a href="../xdboard/logout.html">Link to logout</a></li>
-  </ul-->
+  <li><a href="../xdboard/index.html">Link to home</a></li>
+  <li><a href="../xdboard/add.html">Link to adding food</a></li>
+  <li><a href="../xdboard/nutrition.html">Link to nutrition info</a></li>
+  <li><a href="../xdboard/foodnut.html">Link to food nutrition</a></li>
+  <li><a href="../xdboard/progress.html">Link to progress</a></li>
+  <li><a href="../xdboard/settings.html">Link to setting</a></li>
+  <li><a href="../xdboard/profile.html">Link to profile</a></li>
+  <li><a href="../xdboard/logout.html">Link to logout</a></li>
+</ul-->
 
 <div id="app">
   <div class="container">
@@ -101,7 +101,9 @@ li {
       <li v-for="item in Breakfast">
         <div class="row">
           <div class="col-xs-7">
-            {{item.name}} ({{item.quantity}})
+            <a href="foodnut.html">
+              {{item.name}} ({{item.quantity}})
+            </a>
           </div>
           <div class="col-xs-5" style="text-align: right;">
             {{item.calories}} cal
@@ -131,7 +133,9 @@ li {
       <li v-for="item in Lunch">
         <div class="row">
           <div class="col-xs-7">
-            {{item.name}} ({{item.quantity}})
+            <a href="foodnut.html">
+              {{item.name}} ({{item.quantity}})
+            </a>
           </div>
           <div class="col-xs-5" style="text-align: right">
             {{item.calories}} cal
@@ -161,7 +165,9 @@ li {
       <li v-for="item in Dinner">
         <div class="row">
           <div class="col-xs-7">
-            {{item.name}} ({{item.quantity}})
+            <a href="foodnut.html">
+              {{item.name}} ({{item.quantity}})
+            </a>
           </div>
           <div class="col-xs-5" style="text-align: right">
             {{item.calories}} cal
@@ -196,73 +202,73 @@ li {
   </div>
 </div>
 <script>
-  var homePage = new Vue({
-    el: '#app',
-    mounted: function(){
-      for(var i = 0; i < this.Breakfast.length; i++){
-        this.Breakfast[i].calories = (this.Breakfast[i].calories * this.Breakfast[i].quantity);
-        this.BreakfastTotal += this.Breakfast[i].calories;
+var homePage = new Vue({
+  el: '#app',
+  mounted: function(){
+    for(var i = 0; i < this.Breakfast.length; i++){
+      this.Breakfast[i].calories = (this.Breakfast[i].calories * this.Breakfast[i].quantity);
+      this.BreakfastTotal += this.Breakfast[i].calories;
+    }
+    for(var i = 0; i < this.Lunch.length; i++){
+      this.Lunch[i].calories = (this.Lunch[i].calories * this.Lunch[i].quantity);
+      this.LunchTotal += this.Lunch[i].calories;
+    }
+    for(var i = 0; i < this.Dinner.length; i++){
+      this.Dinner[i].calories = (this.Dinner[i].calories * this.Dinner[i].quantity);
+      this.DinnerTotal += this.Dinner[i].calories;
+    }
+  },
+
+  data: {
+    msg: "hello",
+    Breakfast: [
+      {
+        name: 'Apple',
+        quantity: 1,
+        calories: 80,
+      },
+
+      {
+        name: 'Peanut Butter',
+        quantity: 1,
+        calories: 90,
       }
-      for(var i = 0; i < this.Lunch.length; i++){
-        this.Lunch[i].calories = (this.Lunch[i].calories * this.Lunch[i].quantity);
-        this.LunchTotal += this.Lunch[i].calories;
+    ],
+
+    BreakfastTotal: 0,
+
+    Lunch: [
+      {
+        name: 'White Rice',
+        quantity: 1,
+        calories: 720,
+      },
+
+      {
+        name: 'Thai Basil Chicken',
+        quantity: 2,
+        calories: 300,
+      },
+
+      {
+        name: 'Pure Premium 100% Orange Juice',
+        quantity: 8,
+        calories: 13.75,
       }
-      for(var i = 0; i < this.Dinner.length; i++){
-        this.Dinner[i].calories = (this.Dinner[i].calories * this.Dinner[i].quantity);
-        this.DinnerTotal += this.Dinner[i].calories;
-      }
+    ],
+
+    LunchTotal: 0,
+
+    Dinner: [],
+    DinnerTotal: 0,
+  },
+
+  methods: {
+    calTotal(item) {
+      return item.quantity * item.calories;
     },
-
-    data: {
-      msg: "hello",
-        Breakfast: [
-          {
-            name: 'Apple',
-            quantity: 1,
-            calories: 80,
-          },
-
-          {
-            name: 'Peanut Butter',
-            quantity: 1,
-            calories: 90,
-          }
-        ],
-
-        BreakfastTotal: 0,
-
-        Lunch: [
-          {
-            name: 'White Rice',
-            quantity: 1,
-            calories: 720,
-          },
-
-          {
-            name: 'Thai Basil Chicken',
-            quantity: 2,
-            calories: 300,
-          },
-
-          {
-            name: 'Pure Premium 100% Orange Juice',
-            quantity: 8,
-            calories: 13.75,
-          }
-        ],
-
-        LunchTotal: 0,
-
-        Dinner: [],
-        DinnerTotal: 0,
-      },
-
-      methods: {
-        calTotal(item) {
-          return item.quantity * item.calories;
-        },
-      },
-  })
+  },
+})
 </script>
 </body>
 

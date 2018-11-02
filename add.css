@@ -1,13 +1,15 @@
 .col-xs-4 {
   border-style: solid;
   border-width: 1px;
+  text-align: center;
 }
 
 ul {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
   width: 375px;
-  margin: auto;
 }

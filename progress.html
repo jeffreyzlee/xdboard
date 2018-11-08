@@ -37,7 +37,6 @@ li {
       <input type="input" ref="my_input" class="form-control" id="exampleInputPassword1" placeholder="123...">
       <button type="button" @click.prevent="addPoint()" class="btn btn-primary">Submit</button>
     </form>
-    Output: {{ output }}
   </div>
 
   <br />
@@ -60,14 +59,14 @@ li {
     google.charts.load('current', {packages: ['corechart', 'line']});
     google.charts.setOnLoadCallback(drawAxisTickColors);
 
-    var add_data = [];
-    var day = 11;
-
-    function addPoint() {
-      console.log("Add point");
-      add_data.addRows([day, 139]);
-      day++;
-    }
+    // var add_data = [];
+    // var day = 11;
+    //
+    // function addPoint() {
+    //   console.log("Add point");
+    //   add_data.addRows([day, 139]);
+    //   day++;
+    // }
 
 
     function drawAxisTickColors() {
@@ -80,7 +79,6 @@ li {
         [0,135], [1, 136], [2, 137], [3, 136], [4, 136], [5, 137], [6, 136], [7,138], [8, 137], [9, 137], [10, 138]
       ]);
 
-      data.addRows(add_data);
 
       // data.addRows([
       //   [0, 0, 0],    [1, 10, 5],   [2, 23, 15],  [3, 17, 9],   [4, 18, 10],  [5, 9, 5],
@@ -142,7 +140,7 @@ li {
       },
 
       methods: {
-        addPoint(){
+        addPoint() {
           this.output = this.$ref.my_input.value;
           console.log(this.output);
         }

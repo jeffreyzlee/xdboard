@@ -1,0 +1,10 @@
+{
+  "lambda": {
+    "role": "xdboard-executor",
+    "name": "xdboard",
+    "region": "us-west-1"
+  },
+  "api": {
+    "id": "wpnnk3oaxd"
+  }
+}

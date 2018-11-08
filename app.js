@@ -1,6 +1,9 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();
-const port = 8080;
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/home', (req, res) => {
 	res.sendFile(__dirname + '/home.html');
@@ -40,6 +43,11 @@ app.get('/progress', (req, res) => {
 
 app.get('/settings', (req, res) => {
 	res.sendFile(__dirname + '/settings.html');
+});
+
+app.post('/addFood', (req, res) => {
+	var food = req.body.myFood;
+	res.sendFile(__dirname + '/home.html');
 });
 
 //app.listen(port, () => console.log(`Example app listening on port ${port}!`));

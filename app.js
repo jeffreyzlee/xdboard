@@ -51,7 +51,7 @@ app.post('/changeSettings', (req, res) => {
 	height = req.body.height;
 	target = req.body.target;
 
-	res.json({msg: "Successfully changed settings"});
+	res.sendFile(__dirname + '/submit.html');
 });
 
 app.get('/getThings', (req, res) => {

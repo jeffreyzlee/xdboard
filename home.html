@@ -195,6 +195,27 @@ li {
 <script>
 var homePage = new Vue({
   el: '#app',
+  created: function() {
+    var xhttp = new XMLHttpRequest();     
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        // Typical action to be performed when the document is ready:
+        var datas = JSON.parse(xhttp.responseText);
+        weight = parseInt(datas.weight, 10);
+        height = parseInt(datas.height, 10);
+        target = parseInt(datas.target, 10);
+
+        homePage.Goal = parseInt((66 + (13.7 * weight / 2.2) + (5 * height) - (6.8 * 21)) * 1.55, 10);
+        if(target < weight) homePage.Goal -= 500;
+        else if(target > weight) homePage.Goal += 500;
+        homePage.Remaining = homePage.Goal - homePage.FoodTot;
+      }
+    };
+
+    xhttp.open("GET", "getThings", true);
+    xhttp.send();
+  },
+
   mounted: function(){
     this.addFood();
 
@@ -259,7 +280,7 @@ var homePage = new Vue({
     DinnerTotal: 0,
 
     FoodTot: 0,
-    Goal: 2480,
+    Goal: 0,
     Remaining: 0,
   },
 
@@ -290,6 +311,8 @@ var homePage = new Vue({
       if(food == "") return;
 
       this.Dinner.push({name: food, quantity: 1, calories});
+      this.FootTot += calories;
+      this.Remaining -= calories;
     },
   },
 })

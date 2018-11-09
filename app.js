@@ -5,6 +5,10 @@ const app = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
+var weight = 135;
+var target = 145;
+var height = 175;
+
 app.get('/home', (req, res) => {
 	res.sendFile(__dirname + '/home.html');
 });
@@ -19,10 +23,6 @@ app.get('/add', (req, res) => {
 
 app.get('/foodnut', (req, res) => {
 	res.sendFile(__dirname + '/foodnut.html');
-});
-
-app.get('/home', (req, res) => {
-	res.sendFile(__dirname + '/home.html');
 });
 
 app.get('/logout', (req, res) => {
@@ -45,10 +45,24 @@ app.get('/settings', (req, res) => {
 	res.sendFile(__dirname + '/settings.html');
 });
 
-app.post('/foodAdder', (req, res) => {
+app.post('/changeSettings', (req, res) => {
 	//res.sendFile(__dirname + '/home.html');
-	res.json();
+	weight = req.body.weight;
+	height = req.body.height;
+	target = req.body.target;
+
+	res.json({msg: "Successfully changed settings"});
 });
+
+app.get('/getThings', (req, res) => {
+	var toSend = {
+		weight: weight,
+		height: height,
+		target: target,
+	}
+
+	res.json(toSend);
+})
 
 //app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 module.exports = app;

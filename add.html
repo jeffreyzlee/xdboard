@@ -59,18 +59,32 @@ input[type=submit] {
   background-color: DodgerBlue !important; 
   color: #ffffff; 
 }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  background-color: #62B6CB;
+  color: White;
+  width: 25%;
+  padding: 5px;
+  margin: 5px;
+}
 </style>
 
 <body>
   <br />
   <div id="app">
-    <form @submit="checkForm" action="addFood" method="post">
+    <form @submit="checkForm" action="home" method="get">
     <div class="container">
     <div class="row">
 
 
       <div style="text-align: center">
-        <a href="home" style="float: left"><</a>
+        <a href="home" style="float: left">Back</a>
         <!--input type="text" placeholder="Search for food" style="margin-bottom: 10px"-->
         <div class="autocomplete" style="width:300px;">
           <input id="myInput" v-model="msg" type="text" name="myFood" placeholder="Search for food" style="margin-bottom: 10px">
@@ -78,20 +92,20 @@ input[type=submit] {
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-4" style="background-color: #62B6CB">
-        <a href="#" style="color: Black">Recent</a>
+      <div class="col-xs-4" id="recent" @click="setRecentFoods">
+        Recent
       </div>
-      <div class="col-xs-4">
-        <a href="#" style="color: Black">Frequent</a>
+      <div class="col-xs-4" id="frequent" @click="setFrequentFoods">
+        Frequent
       </div>
-      <div class="col-xs-4">
-        <a href="#" style="color: Black">My Foods</a>
+      <div class="col-xs-4" id="mine" @click="setMyFoods">
+        My Foods
       </div>
     </div>
     <div class="row">
       <ul>
         <b>
-          <li v-for="item in foods">
+          <li v-for="item in DisplayedFoods">
             <div @click="setItem(item)">
               {{item}}
             </div>
@@ -103,6 +117,7 @@ input[type=submit] {
     <button class="btn btn-primary">Submit</button>
   </div>
 
+  <input type="text" v-show="false" v-model="calories" name="numCalories">
 
 </form>
 </div>
@@ -113,7 +128,11 @@ var homePage = new Vue({
 
   data: {
     msg: null,
-    foods: ["chicken", "steak", "Pure Premium 100% Orange Juice", "Thai Basil Chicken", "White Rice", "Peanut Butter", "Apple"],
+    calories: 200,
+    Recentfoods: ["Chicken", "Steak", "Orange Juice", "Thai Basil Chicken", "White Rice", "Peanut Butter", "Apple"],
+    Frequentfoods: ["Chicken", "Orange Juice", "White Rice"],
+    Myfoods: ["Chicken", "Steak", "Apple"],
+    DisplayedFoods: ["Chicken", "Steak", "Orange Juice", "Thai Basil Chicken", "White Rice", "Peanut Butter", "Apple"],
   },
 
   methods: {
@@ -122,8 +141,44 @@ var homePage = new Vue({
       this.msg = e;
     },
 
+    setMyFoods: function(){
+      this.DisplayedFoods = this.Myfoods;
+      document.getElementById("mine").setAttribute("style", "background-color: #62B6CB;");
+      document.getElementById("recent").setAttribute("style", "background-color: White;");
+      document.getElementById("frequent").setAttribute("style", "background-color: White;");
+    },
+
+    setRecentFoods: function(){
+      this.DisplayedFoods = this.Recentfoods;
+      document.getElementById("recent").setAttribute("style", "background-color: #62B6CB;");
+      document.getElementById("mine").setAttribute("style", "background-color: White;");
+      document.getElementById("frequent").setAttribute("style", "background-color: White;");
+    },
+
+    setFrequentFoods: function(){
+      this.DisplayedFoods = this.Frequentfoods;
+      document.getElementById("frequent").setAttribute("style", "background-color: #62B6CB;");
+      document.getElementById("recent").setAttribute("style", "background-color: White;");
+      document.getElementById("mine").setAttribute("style", "background-color: White;");
+    },
+
     checkForm: function(e){
-      if(this.msg) return true;
+
+      if(this.msg){
+        var xhttp = new XMLHttpRequest();     
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            this.msg = xhttp.responseText;
+          }
+        };
+        xhttp.open("POST", "foodAdder", true);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.send(JSON.stringify({food: msg, calories: 90}));
+      
+        return true;
+      }
+
       e.preventDefault();
     }
   }
@@ -226,7 +281,7 @@ function autocomplete(inp, arr) {
   });
 }
 
-autocomplete(document.getElementById("myInput"), homePage.foods);
+autocomplete(document.getElementById("myInput"), homePage.Recentfoods);
 </script>
 </body>
 </html>

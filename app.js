@@ -45,9 +45,9 @@ app.get('/settings', (req, res) => {
 	res.sendFile(__dirname + '/settings.html');
 });
 
-app.post('/addFood', (req, res) => {
-	var food = req.body.myFood;
-	res.sendFile(__dirname + '/home.html');
+app.post('/foodAdder', (req, res) => {
+	//res.sendFile(__dirname + '/home.html');
+	res.json();
 });
 
 //app.listen(port, () => console.log(`Example app listening on port ${port}!`));

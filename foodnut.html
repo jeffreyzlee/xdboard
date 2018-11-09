@@ -32,7 +32,7 @@ li {
         <a href="home"><b style="color: White"><</b></a>
       </div>
       <div class="col-xs-6" style="text-align: center">
-        <b style="font-size: 130%">Add Food</b>
+        <b style="font-size: 130%">Edit Entry</b>
       </div>
       <div class="col-xs-3" style="text-align: right">
         <a href="home"><b style="color: White">✓</b></a>
@@ -149,7 +149,7 @@ var homePage = new Vue({
         for (var i = 0; i < sURLVariables.length; i++){
             var sParameterName = sURLVariables[i].split('=');
             if (sParameterName[0] == sParam){
-              return sParameterName[1];
+              return decodeURIComponent(sParameterName[1]);
             }
         }
 

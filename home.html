@@ -23,7 +23,7 @@ li {
 <body>
 
 <div id="app">
-  <div class="container-fluid">
+  <div class="container">
     <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 2vw">
       <div class="col-xs-3">
         <b><</b>
@@ -196,6 +196,8 @@ li {
 var homePage = new Vue({
   el: '#app',
   mounted: function(){
+    this.addFood();
+
     for(var i = 0; i < this.Breakfast.length; i++){
       this.Breakfast[i].calories = (this.Breakfast[i].calories * this.Breakfast[i].quantity);
       this.BreakfastTotal += this.Breakfast[i].calories;
@@ -245,7 +247,7 @@ var homePage = new Vue({
       },
 
       {
-        name: 'Pure Premium 100% Orange Juice',
+        name: 'Orange Juice',
         quantity: 8,
         calories: 13.75,
       }
@@ -264,6 +266,30 @@ var homePage = new Vue({
   methods: {
     calTotal(item) {
       return item.quantity * item.calories;
+    },
+
+    getUrlParameter: function(sParam){
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++){
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam){
+              return decodeURIComponent(sParameterName[1]);
+            }
+        }
+
+        return "";
+    },
+
+    addFood(){
+      var food = decodeURIComponent(this.getUrlParameter("myFood"));
+      food = food.replace("+", " ");
+      var calories = parseInt(this.getUrlParameter("numCalories"), 10);
+      console.log(food);
+
+      if(food == "") return;
+
+      this.Dinner.push({name: food, quantity: 1, calories});
     },
   },
 })

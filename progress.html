@@ -4,10 +4,164 @@
 <head>
   <meta charset="utf-8">
   <title>xdboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
+<style>
+h1 {
+  color: #62B6CB;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  border-bottom: 2px solid #62B6CB;
+}
+</style>
 
 <body>
-  <h1>Progress page</h1>
-  <a href="home">Link to home</a>
-</body>
-</html>
+  <div id="app">
+    <h1>Progress</h1>
+    <div id="chart_div"></div>
+
+    <div class="form-group" style="width: 25%; margin: auto;">
+      <form onsubmit="addPoint()">
+        <label for="exampleInputPassword1">Add weight</label>
+        <input type="input" v-model="weight" class="form-control" id="exampleInputPassword1" placeholder="123...">
+        <button type="button" @click.prevent="addPoint()" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <br />
+
+    <div class="row" style="bottom: 0; text-align: center">
+      <div class="col-xs-3">
+        <a href="home">Home</a>
+      </div>
+      <div class="col-xs-3">
+        <a href="progress">Progress</a>
+      </div>
+      <div class="col-xs-3">
+        <a href="nutrition">Nutrition</a>
+      </div>
+      <div class="col-xs-3">
+        <a href="profile">Profile</a>
+      </div>
+    </div>
+    <script>
+    google.charts.load('current', {packages: ['corechart', 'line']});
+    google.charts.setOnLoadCallback(drawAxisTickColors);
+
+    var data;
+    var chart;
+
+
+    function drawAxisTickColors() {
+      data = new google.visualization.DataTable();
+
+      data.addColumn('number', 'X');
+      data.addColumn('number', 'Weight');
+
+      data.addRows([
+        [0,135], [1, 136], [2, 137], [3, 136], [4, 136], [5, 137], [6, 136], [7,138], [8, 137], [9, 137], [10, 138]
+      ]);
+
+      var options = {
+        hAxis: {
+          title: 'Time (Days)',
+          textStyle: {
+            fontSize: 20,
+            fontName: 'Arial',
+            bold: true,
+            italic: true
+          },
+          titleTextStyle: {
+            fontSize: 16,
+            fontName: 'Arial',
+            bold: false,
+            italic: true
+          }
+        },
+        vAxis: {
+          title: 'Pounds',
+          textStyle: {
+            fontSize: 24,
+            bold: true
+          },
+          titleTextStyle: {
+            fontSize: 24,
+            bold: true
+          }
+        },
+        colors: ['#a52714', '#097138']
+      };
+      chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+
+    function addPoint(num, weights){
+      data.addRows([[num, parseInt(weights, 10)]]);
+      var options = {
+        hAxis: {
+          title: 'Time (Days)',
+          textStyle: {
+            fontSize: 20,
+            fontName: 'Arial',
+            bold: true,
+            italic: true
+          },
+          titleTextStyle: {
+            fontSize: 16,
+            fontName: 'Arial',
+            bold: false,
+            italic: true
+          }
+        },
+        vAxis: {
+          title: 'Pounds',
+          textStyle: {
+            fontSize: 24,
+            bold: true
+          },
+          titleTextStyle: {
+            fontSize: 24,
+            bold: true
+          }
+        },
+        colors: ['#a52714', '#097138']
+      };
+
+      homePage.num = homePage.num + 1;
+      chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+
+    var homePage = new Vue({
+      el: '#app',
+
+      data: {
+        weight: 0,
+        num: 11,
+        output: '',
+      },
+
+      methods: {
+        addPoint() {
+          //this.output = this.weight;
+          console.log(this.output);
+          addPoint(this.num, this.weight);
+        }
+      },
+    })
+    </script>
+  </body>
+
+
+  </html>

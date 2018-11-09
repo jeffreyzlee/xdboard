@@ -4,10 +4,158 @@
 <head>
   <meta charset="utf-8">
   <title>xdboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  border-bottom: 2px solid #62B6CB;
+}
+.row {
+  height: 40px;
+}
+</style>
+
 
 <body>
-  <h1>Food Nutrition page</h1>
-  <a href="home">Link to home</a>
+  <div id="app">
+  <div class="container">
+    <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 150%">
+      <div class="col-xs-3">
+        <a href="home"><b style="color: White"><</b></a>
+      </div>
+      <div class="col-xs-6" style="text-align: center">
+        <b style="font-size: 130%">Add Food</b>
+      </div>
+      <div class="col-xs-3" style="text-align: right">
+        <a href="home"><b style="color: White">✓</b></a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col" style="text-align: center">
+        <br />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col" style="text-align: center">
+        <b style="font-size: 130%">{{foodName}}</b>
+      </div>
+    </div>
+
+    <div class="row" style="text-align: center;">
+      <div class="FoodNut">
+          <div class="row">
+            <b style="font-size: 250%">110 cal</b>
+          </div>
+        </div>
+      </div>
+
+    <div class="row">
+      <div class="col" style="text-align: center">
+        <br />
+      </div>
+    </div>
+      <div class="row" style="text-align: center;">
+          <div class="FoodNutDetailText">
+            <div class="col-xs-4">
+              <div class="row">
+                <b style="font-size: 175%">26g</b>
+              </div>
+              <div class="row">
+                <p>Carbs</p>
+              </div>
+            </div>
+            <div class="col-xs-1">
+              <br />
+            </div>
+            <div class="col-xs-2">
+              <div class="row">
+                  <b style="font-size: 175%">0g</b>
+              </div>
+              <div class="row">
+                <p>Fat</p>
+              </div>
+            </div>
+            <div class="col-xs-1">
+              <br />
+            </div>
+            <div class="col-xs-4">
+              <div class="row">
+                <b style="font-size: 175%">2g</b>
+              </div>
+              <div class="row">
+                <p>Protein</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    <div class="row">
+      <div class="col" style="text-align: center">
+        <br />
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row" id="servingSize" style="background-color: #62B6CB; color: White; font-size: 125%">
+        <div class="col-xs-6">
+          <b style="color: White">Serving Size</b>
+        </div>
+        <div class="col-xs-6" style="text-align: right">
+          <b style="color: White">8 fl oz</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row" id="servingSize" style="background-color: #62B6CB; color: White; font-size: 125%">
+        <div class="col-xs-6">
+          <b style="color: White">Number of Servings</b>
+        </div>
+        <div class="col-xs-6" style="text-align: right">
+          <div style="color: Black;">
+              <label for="name"></label>
+              <input type="number" min = "1" step="1" value="1">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 </body>
+<script>
+var homePage = new Vue({
+  el: '#app',
+  mounted: function(){
+    this.foodName = this.GetURLParameter("foodName");
+  },
+
+  data: {
+    foodName: "",
+  },
+
+  methods: {
+    GetURLParameter: function(sParam){
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++){
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam){
+              return sParameterName[1];
+            }
+        }
+
+        return "";
+      }
+  },
+});
+</script>
 </html>

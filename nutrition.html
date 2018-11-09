@@ -4,10 +4,84 @@
 <head>
   <meta charset="utf-8">
   <title>xdboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script>
+  window.onload = function() {
+
+  var chart = new CanvasJS.Chart("chartContainer", {
+  	animationEnabled: true,
+  	title: {
+      fontFamily: "Helvetica Neue,Helvetica,Arial,sans-serif",
+  		text: "Nutrition"
+  	},
+  	data: [{
+  		type: "doughnut",
+  		startAngle: 240,
+      indexLabelFontFamily: "Helvetica Neue,Helvetica,Arial,sans-serif",
+  		yValueFormatString: "##0\"%\"",
+  		indexLabel: "{label} {y}",
+  		dataPoints: [
+  			{y: 67, label: "Carbs"},
+  			{y: 8, label: "Fat"},
+  			{y: 25, label: "Protein"}
+  		]
+  	}]
+  });
+  chart.render();
+
+  }
+  </script>
+
 </head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  border-bottom: 2px solid #62B6CB;
+}
+</style>
 
 <body>
-  <h1>Nutrition Info page</h1>
-  <a href="home">Link to home</a>
+<div id="app">
+  <div class="container">
+    <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 125%">
+      <div class="col-xs-3">
+        <b><</b>
+      </div>
+      <div class="col-xs-6" style="text-align: center">
+        <b>November 1, 2018</b>
+      </div>
+      <div class="col-xs-3" style="text-align: right">
+        <b>></b>
+      </div>
+    </div>
+
+  <!-- <div class="row">
+    <div class="col" style="text-align: center">
+      <b style="font-size: 130%">Nutrition</b>
+    </div>
+  </div> -->
+  <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+  <div class="row" style="bottom: 0; text-align: center">
+        <div class="col-xs-3">
+          <a href="home">Home</a>
+        </div>
+        <div class="col-xs-3">
+          <a href="progress">Progress</a>
+        </div>
+        <div class="col-xs-3">
+          <a href="nutrition">Nutrition</a>
+        </div>
+        <div class="col-xs-3">
+          <a href="profile">Profile</a>
+        </div>
+      </div>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>

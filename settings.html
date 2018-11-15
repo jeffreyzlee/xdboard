@@ -9,27 +9,93 @@
 </head>
 
 <body>
-	<div id="app">
-  <h1 style="text-align: center; font-size: 2vw; color: #62B6CB">Settings</h1>
-  <form action="changeSettings" @submit="checkForm" method="post">
+  <div class="container-fluid">
+    <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 2vw">
+      <div class="col-xs-3">
+      </div>
+      <div class="col-xs-6" style="text-align: center" >
+        <b>Settings</b>
+      </div>
+      <div class="col-xs-3" style="text-align: right">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: center">
+        <br />
+      </div>
+    </div>
+  <form>
   <div class="container">
   	<div class="row" style="text-align: center; padding-bottom: 10px">
-  		<input type="text" name="height" placeholder="Change Height" v-model="height">
-  	</div>
-  	  <div class="row" style="text-align: center;  padding-bottom: 10px" >
-  		<input type="text" name="weight" placeholder="Change Weight" v-model="weight">
+      <div class="col-xs-6">
+        <label>Name</label>
+      </div>
+      <input type="text" placeholder="Change Name">
   	</div>
   	  <div class="row" style="text-align: center;  padding-bottom: 10px">
-  		<input type="text" name="target" placeholder="Change Target Weight" v-model="target">
+        <div class="col-xs-6">
+          <label>Age</label>
+        </div>
+      <input type="number" placeholder="Change Age">
+  	</div>
+  	  <div class="row" style="text-align: center;  padding-bottom: 10px">
+        <div class="col-xs-6">
+          <label>Current Weight</label>
+        </div>
+      <input type="number" placeholder="Change Weight">
+  	</div>
+    <div class="row" style="text-align: center; padding-bottom: 10px">
+      <div class="col-xs-6">
+        <label>Target Weight</label>
+      </div>
+      <input type="number" placeholder="Change Target Weight">
   	</div>
   	<div class="row" style="text-align: center">
-  		<button>Submit</button>
+  		<a class="btn btn-primary" href="profile" role="button"><b>Submit</b></a>
   	</div>
-  	<a href="home">Link to home</a>
+    <div class="row">
+      <div class="col" style="text-align: center">
+        <br />
+      </div>
+    </div>
+    <div class="row" style="bottom: 0; text-align: center;">
+      <div class="col-xs-3">
+        <div class="row" style="bottom: 0; text-align: center;">
+        <a href="home"><span class="glyphicon glyphicon-home"></span></a>
+        </div>
+        <div class="row" style="bottom: 0; text-align: center;">
+        <a href="home">Home</a>
+        </div>
+      </div>
+      <div class="col-xs-3">
+        <div class="row" style="bottom: 0; text-align: center;">
+        <a href="progress"><span class="glyphicon glyphicon-stats"></span></a>
+        </div>
+        <div class="row" style="bottom: 0; text-align: center;">
+        <a href="progress">Progress</a>
+        </div>
+      </div>
+      <div class="col-xs-3">
+        <div class="row" style="bottom: 0; text-align: center;">
+        <a href="nutrition"><span class="glyphicon glyphicon-apple"></span></a>
+        </div>
+        <div class="row" style="bottom: 0; text-align: center;">
+          <a href="nutrition">Nutrition</a>
+        </div>
+      </div>
+      <div class="col-xs-3">
+        <div class="row" style="bottom: 0; text-align: center;">
+        <a href="profile"><span class="glyphicon glyphicon-user"></span></a>
+        </div>
+        <div class="row" style="bottom: 0; text-align: center;">
+        <a href="profile">Profile</a>
+        </div>
+      </div>
+    </div>
   </div>
-  
+
+
 </form>
-</div>
 </body>
 
 <script>
@@ -45,7 +111,7 @@ var homePage = new Vue({
   methods: {
   	checkForm: function(e){
 
-      if(this.height && this.weight && this.target){
+      if(this.height || this.weight || this.target){
         return true;
       }
 

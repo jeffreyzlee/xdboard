@@ -1,0 +1,127 @@
+<!doctype html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>xdboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+</head>
+
+<body>
+  <div id="app">
+    <div class="container-fluid">
+      <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 2vw">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-xs-6" style="text-align: center" >
+          <b>Help Center</b>
+        </div>
+        <div class="col-xs-3" style="text-align: right">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" style="text-align: center">
+          <br />
+        </div>
+      </div>
+
+      <script>
+      $(document).ready(function() {
+
+        $('.faq_question').click(function() {
+
+          if ($(this).parent().is('.open')){
+            $(this).closest('.faq').find('.faq_answer_container').animate({'height':'0'},500);
+            $(this).closest('.faq').removeClass('open');
+
+          }else{
+            var newHeight =$(this).closest('.faq').find('.faq_answer').height() +'px';
+            $(this).closest('.faq').find('.faq_answer_container').animate({'height':newHeight},500);
+            $(this).closest('.faq').addClass('open');
+          }
+
+        });
+
+      });
+    </script>
+    <style>
+    /*FAQS*/
+    .faq_question {
+      margin: 0px;
+      padding: 0px 0px 5px 0px;
+      display: inline-block;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 25px;
+    }
+
+    .faq_answer_container {
+      height: 0px;
+      overflow: hidden;
+      padding: 0px;
+    }
+    .faq_answer {
+      margin: 0px;
+      padding: 0px 0px 5px 0px;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 20px;
+    }
+  </style>
+
+  <div class="faq_container">
+    <div class="faq">
+      <div class="faq_question">How do I change my profile information?</div>
+      <div class="faq_answer_container">
+        <div class="faq_answer">You can change your target weight and profile information
+           in the profile page of the app by clicking on the "Edit Profile" button.</div>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq_question">How does the app calculate my goals?</div>
+      <div class="faq_answer_container">
+        <div class="faq_answer">We use your inputted age, gender, current weight,
+          and target weight to calculate the total amount of calories you should
+          be eating in a day.</div>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq_question">How do I add food to my food diary?</div>
+      <div class="faq_answer_container">
+        <div class="faq_answer">On the home page, tap the "+" button that is located
+          to the left of the whatever meal of the day you would like to add the food to.
+          It will take you to the </div>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq_question">Question2 goes here</div>
+      <div class="faq_answer_container">
+        <div class="faq_answer">Answer2 goes here</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: center">
+        <br />
+      </div>
+    </div>
+  </div>
+  <div class="row" style="bottom: 0; text-align: center;">
+    <div class="col-xs-3">
+      <a href="home">Home</a>
+    </div>
+    <div class="col-xs-3">
+      <a href="progress">Progress</a>
+    </div>
+    <div class="col-xs-3">
+      <a href="nutrition">Nutrition</a>
+    </div>
+    <div class="col-xs-3">
+      <a href="profile">Profile</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

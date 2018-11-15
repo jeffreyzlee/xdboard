@@ -5,23 +5,191 @@
   <meta charset="utf-8">
   <title>xdboard</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 </head>
 
 <body>
-  <h1 style="text-align: center; font-size: 2vw; color: #62B6CB">Profile page</h1>
-
-  <div class="container">
-  	<div class="row" style="text-align: center;">
-  		<div class="col-xs-4">
-  			<a href="home">Link to home</a>
-  		</div>
-  		<div class="col-xs-4">
-  			<a href="settings">Link to settings</a>
-  		</div>
-  		<div class="col-xs-4">
-  			<a href="/latest">Logout</a>
-  		</div>
-  	</div>
+  <div id="app">
+  <div class="container-fluid">
+    <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 2vw">
+      <div class="col-xs-3">
+      </div>
+      <div class="col-xs-6" style="text-align: center" >
+        <b>Profile</b>
+      </div>
+      <div class="col-xs-3" style="text-align: right">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: center">
+        <br />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3" style="text-align: center">
+        <img src="https://i.stack.imgur.com/YQu5k.png" alt="" style="width:100px;height:100px;">
+      </div>
+      <div class="col-xs-3" style="text-align: center">
+        <div class="row-xs-3" style="text-align: center">
+          <a class="btn btn-info" href="settings" role="button"><b>Edit Profile</b></a>
+        </div>
+        <div class="row-xs-3" style="text-align: center">
+          <a class="btn btn-info" href="help" role="button"><b>Get Help</b></a>
+        </div>
+        <div class="row-xs-3" style="text-align: center">
+          <a class="btn btn-info" href="/" role="button"><b>Logout</b></a>
+        </div>
+      <!-- </div>
+      <div class="row-xs-3" style="text-align: center">
+        <a class="btn btn-info" href="settings" role="button"><b>Edit Profile</b></a>
+      </div>
+      <div class="row-xs-3" style="text-align: center">
+        <a class="btn btn-info" href="help" role="button"><b>Get Help</b></a>
+      </div>
+      <div class="row-xs-3" style="text-align: center">
+        <a class="btn btn-info" href="index" role="button"><b>Logout</b></a>
+      </div>-->
+    </div>
+    <div class="row">
+      <div class="col" style="text-align: center">
+        <br />
+      </div>
+    </div>
+    <div class ="col-xs-6">
+      <div class="row" style="text-align: left">
+        <div class="col-xs-6">
+          <label>Name</label>
+        </div>
+        <div class="col-xs-6">
+          <p>{{name}}</p>
+        </div>
+      </div>
+      <div class="row" style="text-align: left">
+        <div class="col-xs-6">
+          <label>Gender</label>
+        </div>
+        <div class="col-xs-6">
+          <p>{{gender}}</p>
+        </div>
+      </div>
+      <div class="row" style="text-align: left">
+        <div class="col-xs-6">
+          <label>Age</label>
+        </div>
+        <div class="col-xs-6">
+          <p>{{age}}</p>
+        </div>
+      </div>
+      <div class="row" style="text-align: left">
+        <div class="col-xs-6">
+          <label>Current Weight</label>
+        </div>
+        <div class="col-xs-6">
+          <p>{{weight}}</p>
+        </div>
+      </div>
+      <div class="row" style="text-align: left">
+        <div class="col-xs-6">
+          <label>Height</label>
+        </div>
+        <div class="col-xs-6">
+          <p>{{height}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" style="text-align: center">
+          <br />
+        </div>
+      </div>
+    </div>
   </div>
+  <div class="row" style="bottom: 0; text-align: center;">
+    <div class="col-xs-3">
+      <div class="row" style="bottom: 0; text-align: center;">
+      <a href="home"><span class="glyphicon glyphicon-home"></span></a>
+      </div>
+      <div class="row" style="bottom: 0; text-align: center;">
+      <a href="home">Home</a>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="row" style="bottom: 0; text-align: center;">
+      <a href="progress"><span class="glyphicon glyphicon-stats"></span></a>
+      </div>
+      <div class="row" style="bottom: 0; text-align: center;">
+      <a href="progress">Progress</a>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="row" style="bottom: 0; text-align: center;">
+      <a href="nutrition"><span class="glyphicon glyphicon-apple"></span></a>
+      </div>
+      <div class="row" style="bottom: 0; text-align: center;">
+        <a href="nutrition">Nutrition</a>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="row" style="bottom: 0; text-align: center;">
+      <a href="profile"><span class="glyphicon glyphicon-user"></span></a>
+      </div>
+      <div class="row" style="bottom: 0; text-align: center;">
+      <a href="profile">Profile</a>
+      </div>
+    </div>
+  </div>
+
+    <!-- <div class="row" style="text-align: center;">
+      <div class="col-xs-3">
+        <a class="btn btn-info" href="home" role="button"><b>Home</b></a>
+      </div>
+      <div class="col-xs-3">
+        <a class="btn btn-info" href="settings" role="button"><b>Edit Profile</b></a>
+      </div>
+      <div class="col-xs-3">
+        <a class="btn btn-info" href="help" role="button"><b>Get Help</b></a>
+      </div>
+      <div class="col-xs-3">
+        <a class="btn btn-info" href="index" role="button"><b>Logout</b></a>
+      </div>
+    </div> -->
+  </div>
+</div>
 </body>
+<script>
+var homePage = new Vue({
+  el: '#app',
+  created: function() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        // Typical action to be performed when the document is ready:
+        var datas = JSON.parse(xhttp.responseText);
+        homePage.weight = parseInt(datas.weight, 10);
+        homePage.height = parseInt(datas.height, 10);
+        homePage.target = parseInt(datas.target, 10);
+        homePage.name = datas.name;
+        homePage.gender = datas.gender;
+        homePage.age = datas.age;
+
+        console.log(datas);
+
+      }
+    };
+
+    xhttp.open("GET", "getThings", true);
+    xhttp.send();
+  },
+
+  data: {
+    msg: "hello",
+    weight: null,
+    height: null,
+    target: null,
+    age: null,
+    name: "",
+    gender: "",
+  },
+
+})
+</script>
 </html>

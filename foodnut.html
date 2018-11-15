@@ -32,11 +32,11 @@ li {
         <a href="home"><b style="color: White"><</b></a>
       </div>
       <div class="col-xs-6" style="text-align: center">
-        <b style="font-size: 130%">Edit Entry</b>
+        <b style="font-size: 130%">Add Food</b>
       </div>
       <div class="col-xs-3" style="text-align: right">
-        <a href="home"><b style="color: White">✓</b></a>
-      </div>
+        <a href="home" @click="sendData"><b style="color: White">✓</b></a>
+      </div>	  
     </div>
 
     <div class="row">
@@ -54,7 +54,7 @@ li {
     <div class="row" style="text-align: center;">
       <div class="FoodNut">
           <div class="row">
-            <b style="font-size: 250%">110 cal</b>
+            <b style="font-size: 250%">{{cals}} cal</b>
           </div>
         </div>
       </div>
@@ -68,7 +68,7 @@ li {
           <div class="FoodNutDetailText">
             <div class="col-xs-4">
               <div class="row">
-                <b style="font-size: 175%">26g</b>
+                <b style="font-size: 175%">{{carbs}}g</b>
               </div>
               <div class="row">
                 <p>Carbs</p>
@@ -79,7 +79,7 @@ li {
             </div>
             <div class="col-xs-2">
               <div class="row">
-                  <b style="font-size: 175%">0g</b>
+                  <b style="font-size: 175%">{{fat}}g</b>
               </div>
               <div class="row">
                 <p>Fat</p>
@@ -90,7 +90,7 @@ li {
             </div>
             <div class="col-xs-4">
               <div class="row">
-                <b style="font-size: 175%">2g</b>
+                <b style="font-size: 175%">{{protein}}g</b>
               </div>
               <div class="row">
                 <p>Protein</p>
@@ -110,7 +110,7 @@ li {
           <b style="color: White">Serving Size</b>
         </div>
         <div class="col-xs-6" style="text-align: right">
-          <b style="color: White">8 fl oz</b>
+          <b style="color: White">1</b>
         </div>
       </div>
     </div>
@@ -128,18 +128,28 @@ li {
         </div>
       </div>
     </div>
+</div>
+</div>
 
 
-</body>
+
 <script>
 var homePage = new Vue({
   el: '#app',
   mounted: function(){
     this.foodName = this.GetURLParameter("foodName");
+    this.carbs = this.GetURLParameter("carbs");
+    this.protein = this.GetURLParameter("protein");
+    this.fat = this.GetURLParameter("fat");
+    this.cals = this.GetURLParameter("calories");
   },
 
   data: {
     foodName: "",
+    carbs: 0,
+    fat: 0,
+    protein: 0,
+    cals: 0,
   },
 
   methods: {
@@ -154,8 +164,23 @@ var homePage = new Vue({
         }
 
         return "";
+     },
+
+     sendData: function(e){
+     	//e.preventDefault();
+     	var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+		xmlhttp.open("POST", "/latest/addFood");
+		xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+		xmlhttp.send(JSON.stringify({ 
+			"foodName": this.foodName, 
+			"carbs" : this.carbs,
+			"fat": this.fat,
+    		"protein": this.protein,
+    		"calories": this.cals,
+		}));
      }
   },
 });
 </script>
+</body>
 </html>

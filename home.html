@@ -214,6 +214,30 @@ var homePage = new Vue({
 
     xhttp.open("GET", "getThings", true);
     xhttp.send();
+
+    var xhttp2 = new XMLHttpRequest();     
+    xhttp2.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var datas = JSON.parse(xhttp2.responseText);
+        var i = 0;
+        for(i = 0; i < datas.foodsAdded.length; i++){
+
+          homePage.Dinner.push(datas.foodsAdded[i]);
+          homePage.Dinner[homePage.Dinner.length - 1].name = homePage.Dinner[homePage.Dinner.length - 1].foodName;
+          homePage.Dinner[homePage.Dinner.length - 1].quantity = 1;
+
+          homePage.DinnerTotal += parseInt(datas.foodsAdded[i].calories, 10);
+        }
+
+        homePage.FoodTot += homePage.DinnerTotal;
+        homePage.Remaining -= homePage.DinnerTotal;
+
+        console.log(datas);
+      }
+    };
+
+    xhttp2.open("GET", "foodToAdd", true);
+    xhttp2.send();
   },
 
   mounted: function(){
@@ -318,7 +342,7 @@ var homePage = new Vue({
     addFood(){
       var food = decodeURIComponent(this.getUrlParameter("myFood"));
       food = food.replace("+", " ");
-      var calories = parseInt(this.getUrlParameter("numCalories"), 10);
+      var calories = parseInt(this.getUrlParameter("calories"), 10);
       console.log(food);
 
       if(food == "") return;

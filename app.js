@@ -12,6 +12,10 @@ var weight = 135;
 var target = 145;
 var height = 175;
 
+var name = "Kandarp";
+var age = 23;
+var gender = "male";
+
 var foodsAdded = [];
 
 app.get('/home', (req, res) => {
@@ -65,6 +69,9 @@ app.get('/getThings', (req, res) => {
 		weight: weight,
 		height: height,
 		target: target,
+		name: name,
+		gender: gender,
+		age: age
 	}
 
 	res.json(toSend);

@@ -83,7 +83,7 @@ li {
           <b>Breakfast</b>
         </div>
         <div class="col-xs-1" style="float: right">
-          <a href="add"><b style="color: White">+</b></a>
+          <a href="add?time=Breakfast"><b style="color: White">+</b></a>
         </div>
       </div>
 
@@ -116,7 +116,7 @@ li {
           <b>Lunch</b>
         </div>
         <div class="col-xs-1" style="float: right">
-          <a href="add"><b style="color: White">+</b></a>
+          <a href="add?time=Lunch"><b style="color: White">+</b></a>
         </div>
       </div>
       <ul id="lunchList">
@@ -148,7 +148,7 @@ li {
           <b>Dinner</b>
         </div>
         <div class="col-xs-1" style="float: right">
-          <a href="add"><b style="color: White">+</b></a>
+          <a href="add?time=Dinner"><b style="color: White">+</b></a>
         </div>
       </div>
       <ul id="dinnerList">
@@ -222,15 +222,33 @@ var homePage = new Vue({
         var i = 0;
         for(i = 0; i < datas.foodsAdded.length; i++){
 
-          homePage.Dinner.push(datas.foodsAdded[i]);
-          homePage.Dinner[homePage.Dinner.length - 1].name = homePage.Dinner[homePage.Dinner.length - 1].foodName;
-          homePage.Dinner[homePage.Dinner.length - 1].quantity = 1;
+          if(datas.foodsAdded[i].time == "Dinner"){
+            homePage.Dinner.push(datas.foodsAdded[i]);
+            homePage.Dinner[homePage.Dinner.length - 1].name = homePage.Dinner[homePage.Dinner.length - 1].foodName;
+            homePage.Dinner[homePage.Dinner.length - 1].quantity = 1;
 
-          homePage.DinnerTotal += parseInt(datas.foodsAdded[i].calories, 10);
+            homePage.DinnerTotal += parseInt(datas.foodsAdded[i].calories, 10);
+          }
+
+          else if(datas.foodsAdded[i].time == "Lunch"){
+            homePage.Lunch.push(datas.foodsAdded[i]);
+            homePage.Lunch[homePage.Lunch.length - 1].name = homePage.Lunch[homePage.Lunch.length - 1].foodName;
+            homePage.Lunch[homePage.Lunch.length - 1].quantity = 1;
+
+            homePage.LunchTotal += parseInt(datas.foodsAdded[i].calories, 10);
+          }
+
+          else{
+            homePage.Breakfast.push(datas.foodsAdded[i]);
+            homePage.Breakfast[homePage.Breakfast.length - 1].name = homePage.Breakfast[homePage.Breakfast.length - 1].foodName;
+            homePage.Breakfast[homePage.Breakfast.length - 1].quantity = 1;
+
+            homePage.BreakfastTotal += parseInt(datas.foodsAdded[i].calories, 10);
+          }
         }
 
-        homePage.FoodTot += homePage.DinnerTotal;
-        homePage.Remaining -= homePage.DinnerTotal;
+        homePage.FoodTot = homePage.DinnerTotal + homePage.LunchTotal + homePage.BreakfastTotal;
+        homePage.Remaining = homePage.Goal - homePage.FoodTot;
 
         console.log(datas);
       }
@@ -262,55 +280,11 @@ var homePage = new Vue({
 
   data: {
     msg: "hello",
-    Breakfast: [
-      {
-        name: 'Apple',
-        quantity: 1,
-        calories: 80,
-        protein: 6,
-        carb: 14,
-        fat: 0
-      },
-
-      {
-        name: 'Peanut Butter',
-        quantity: 1,
-        calories: 90,
-        fat: 6,
-        protein: 7,
-        carbs: 2,
-      }
-    ],
+    Breakfast: [],
 
     BreakfastTotal: 0,
 
-    Lunch: [
-      {
-        name: 'White Rice',
-        quantity: 1,
-        calories: 720,
-        carbs: 180
-      },
-
-      {
-        name: 'Thai Basil Chicken',
-        quantity: 2,
-        calories: 300,
-        protein: 40,
-        fat: 10,
-        carbs: 12
-      },
-
-      {
-        name: 'Orange Juice',
-        quantity: 8,
-        calories: 13.75,
-        carbs: 3,
-        fat: 0,
-        protein: 1,
-      }
-    ],
-
+    Lunch: [],
     LunchTotal: 0,
 
     Dinner: [],

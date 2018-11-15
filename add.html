@@ -7,7 +7,6 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="add.css">
 </head>
 <style>
 * { box-sizing: border-box; }
@@ -67,11 +66,14 @@ ul {
 }
 
 li {
-  background-color: #62B6CB;
   color: White;
   width: 25%;
   padding: 5px;
   margin: 5px;
+}
+
+a{
+  color: Black;
 }
 </style>
 
@@ -87,28 +89,31 @@ li {
         <a href="home" style="float: left">Back</a>
         <!--input type="text" placeholder="Search for food" style="margin-bottom: 10px"-->
         <div class="autocomplete" style="width:300px;">
-          <input id="myInput" v-model="msg" type="text" name="myFood" placeholder="Search for food" style="margin-bottom: 10px">
+          <input id="myInput" autocomplete="off" v-model="msg" type="text" name="myFood" placeholder="Search for food" style="margin-bottom: 10px">
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-4" id="recent" @click="setRecentFoods">
+    <!--div class="row">
+      <div class="col-xs-4" id="recent" @click="setRecentFoods"  style="border: 2px">
         Recent
       </div>
-      <div class="col-xs-4" id="frequent" @click="setFrequentFoods">
+      <!--div class="col-xs-4" id="frequent" @click="setFrequentFoods" style="border: 2px">
         Frequent
       </div>
-      <div class="col-xs-4" id="mine" @click="setMyFoods">
+      <div class="col-xs-4" id="mine" @click="setMyFoods" style="border: 2px">
         My Foods
       </div>
-    </div>
+    </div-->
     <div class="row">
       <ul>
         <b>
           <li v-for="item in DisplayedFoods">
-            <div @click="setItem(item)">
-              {{item}}
-            </div>
+            <a :href="'foodnut?foodName=' + item.name + '&carbs=' + item.carbs + 
+            '&protein=' + item.protein + '&fat=' + item.fat + '&calories=' + item.calories">
+              <div @click="setItem(item)">
+                {{item.name}}
+              </div>
+            </a>
           </li>
         </b>
       </ul>
@@ -116,9 +121,6 @@ li {
     </div>
     <button class="btn btn-primary">Submit</button>
   </div>
-
-  <input type="text" v-show="false" v-model="calories" name="numCalories">
-
 </form>
 </div>
 
@@ -128,24 +130,32 @@ var homePage = new Vue({
 
   data: {
     msg: null,
-    calories: 200,
-    Recentfoods: ["Chicken", "Steak", "Orange Juice", "Thai Basil Chicken", "White Rice", "Peanut Butter", "Apple"],
-    Frequentfoods: ["Chicken", "Orange Juice", "White Rice"],
-    Myfoods: ["Chicken", "Steak", "Apple"],
-    DisplayedFoods: ["Chicken", "Steak", "Orange Juice", "Thai Basil Chicken", "White Rice", "Peanut Butter", "Apple"],
+    objToSend: null,
+    Recentfoods: [
+    {name: "Chicken", carbs: 5, protein: 25, fat: 8, calories: 200},
+    {name: "Steak", carbs: 5, protein: 25, fat: 8, calories: 300},
+    {name: "Orange Juice", carbs: 5, protein: 25, fat: 8, calories: 110},
+    {name: "Thai Basil Chicken", carbs: 5, protein: 25, fat: 8, calories: 600},
+    {name: "White Rice", carbs: 5, protein: 25, fat: 8, calories: 720},
+    {name: "Peanut Butter", carbs: 5, protein: 25, fat: 8, calories: 90},
+    {name: "Apple", carbs: 5, protein: 25, fat: 8, calories: 80}
+    ],
+    DisplayedFoods: [
+    {name: "Chicken", carbs: 5, protein: 25, fat: 8, calories: 200},
+    {name: "Steak", carbs: 5, protein: 25, fat: 8, calories: 300},
+    {name: "Orange Juice", carbs: 5, protein: 25, fat: 8, calories: 110},
+    {name: "Thai Basil Chicken", carbs: 5, protein: 25, fat: 8, calories: 600},
+    {name: "White Rice", carbs: 5, protein: 25, fat: 8, calories: 720},
+    {name: "Peanut Butter", carbs: 5, protein: 25, fat: 8, calories: 90},
+    {name: "Apple", carbs: 5, protein: 25, fat: 8, calories: 80}
+    ],
   },
 
   methods: {
     setItem: function(e) {
       //document.getElementById('myInput').value = e;
-      this.msg = e;
-    },
-
-    setMyFoods: function(){
-      this.DisplayedFoods = this.Myfoods;
-      document.getElementById("mine").setAttribute("style", "background-color: #62B6CB;");
-      document.getElementById("recent").setAttribute("style", "background-color: White;");
-      document.getElementById("frequent").setAttribute("style", "background-color: White;");
+      this.msg = e.name;
+      this.objToSend = e;
     },
 
     setRecentFoods: function(){
@@ -154,18 +164,10 @@ var homePage = new Vue({
       document.getElementById("mine").setAttribute("style", "background-color: White;");
       document.getElementById("frequent").setAttribute("style", "background-color: White;");
     },
-
-    setFrequentFoods: function(){
-      this.DisplayedFoods = this.Frequentfoods;
-      document.getElementById("frequent").setAttribute("style", "background-color: #62B6CB;");
-      document.getElementById("recent").setAttribute("style", "background-color: White;");
-      document.getElementById("mine").setAttribute("style", "background-color: White;");
-    },
-
     checkForm: function(e){
 
-      if(this.msg){
-        var xhttp = new XMLHttpRequest();     
+      if(this.objToSend){
+        /*var xhttp = new XMLHttpRequest();     
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
             // Typical action to be performed when the document is ready:
@@ -174,7 +176,7 @@ var homePage = new Vue({
         };
         xhttp.open("POST", "foodAdder", true);
         xhttp.setRequestHeader("Content-Type", "application/json");
-        xhttp.send(JSON.stringify({food: msg, calories: 90}));
+        xhttp.send(JSON.stringify({food: msg, calories: 90}));*/
       
         return true;
       }
@@ -193,7 +195,10 @@ function autocomplete(inp, arr) {
       var a, b, i, val = this.value;
       /*close any already open lists of autocompleted values*/
       closeAllLists();
-      if (!val) { return false;}
+      if (!val) {
+        homePage.DisplayedFoods = homePage.Recentfoods;
+        return false;
+      }
       currentFocus = -1;
       /*create a DIV element that will contain the items (values):*/
       a = document.createElement("DIV");
@@ -204,14 +209,15 @@ function autocomplete(inp, arr) {
       /*for each item in the array...*/
       for (i = 0; i < arr.length; i++) {
         /*check if the item starts with the same letters as the text field value:*/
-        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+        if (arr[i].name.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
           /*create a DIV element for each matching element:*/
           b = document.createElement("DIV");
           /*make the matching letters bold:*/
-          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-          b.innerHTML += arr[i].substr(val.length);
+          b.innerHTML = "<strong>" + arr[i].name.substr(0, val.length) + "</strong>";
+          b.innerHTML += arr[i].name.substr(val.length);
           /*insert a input field that will hold the current array item's value:*/
-          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          b.innerHTML += "<input type='hidden' value='" + arr[i].name + "'>";
+          homePage.DisplayedFoods = [arr[i]];
           /*execute a function when someone clicks on the item value (DIV element):*/
               b.addEventListener("click", function(e) {
               /*insert the value for the autocomplete text field:*/

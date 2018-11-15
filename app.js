@@ -9,6 +9,8 @@ var weight = 135;
 var target = 145;
 var height = 175;
 
+var foodsAdded = [];
+
 app.get('/home', (req, res) => {
 	res.sendFile(__dirname + '/home.html');
 });

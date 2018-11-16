@@ -7,33 +7,6 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <script>
-  window.onload = function() {
-
-  var chart = new CanvasJS.Chart("chartContainer", {
-  	animationEnabled: true,
-  	title: {
-      fontFamily: "Helvetica Neue,Helvetica,Arial,sans-serif",
-  		text: "Nutrition"
-  	},
-  	data: [{
-  		type: "doughnut",
-  		startAngle: 240,
-      indexLabelFontFamily: "Helvetica Neue,Helvetica,Arial,sans-serif",
-  		yValueFormatString: "##0\"%\"",
-  		indexLabel: "{label} {y}",
-  		dataPoints: [
-  			{y: 67, label: "Carbs"},
-  			{y: 8, label: "Fat"},
-  			{y: 25, label: "Protein"}
-  		]
-  	}]
-  });
-  chart.render();
-
-  }
-  </script>
-
 </head>
 <style>
 ul {
@@ -102,6 +75,75 @@ li {
       </div>
     </div>
   </div>
+</div>
+</div>
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <script>
+var homePage = new Vue({
+  el: '#app',
+  created: function() {
+  	var xhttp2 = new XMLHttpRequest();     
+    xhttp2.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var datas = JSON.parse(xhttp2.responseText);
+        var i = 0;
+        for(i = 0; i < datas.foodsAdded.length; i++){
+
+        	homePage.carbs += parseInt(datas.foodsAdded[i].carbs, 10);
+        	homePage.fat += parseInt(datas.foodsAdded[i].fat, 10);
+        	homePage.protein += parseInt(datas.foodsAdded[i].protein, 10);
+        	console.log(homePage.carbs);
+        }    
+        console.log(datas);
+        homePage.toLoad();
+      }
+    };
+
+    xhttp2.open("GET", "foodToAdd", true);
+    xhttp2.send();
+  },
+
+  data: {
+  	carbs: 0,
+  	protein: 0,
+  	fat: 0,
+  },
+
+  methods: {
+  	toLoad(){
+  	console.log(this.carbs);
+  	var chart = new CanvasJS.Chart("chartContainer", {
+  		animationEnabled: true,
+  		title: {
+      	fontFamily: "Helvetica Neue,Helvetica,Arial,sans-serif",
+  			text: "Nutrition"
+  		},
+
+  		data: [{
+  			type: "doughnut",
+  			startAngle: 240,
+      		indexLabelFontFamily: "Helvetica Neue,Helvetica,Arial,sans-serif",
+  			yValueFormatString: "##0\"%\"",
+  			indexLabel: "{label} {y}",
+  			dataPoints: [
+  			//{y: 67, label: "Carbs"},
+  			//{y: 8, label: "Fat"},
+  			//{y: 25, label: "Protein"}
+  			{y: (this.carbs * 100) / (this.carbs + this.protein + this.fat), label: "Carbs"},
+  			{y: (this.protein * 100) / (this.carbs + this.protein + this.fat), label: "Fat"},
+  			{y: (this.fat * 100) / (this.carbs + this.protein + this.fat), label: "Protein"}
+  			]
+  		}]
+  	});
+  	chart.render();
+  	}
+  }
+
+});
+
+   
+</script>
+
 </body>
+
 </html>

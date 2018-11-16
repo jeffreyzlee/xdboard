@@ -26,9 +26,8 @@
             <br />
           </div>
         </div>
-        <form>
           <div class="container">
-            <div class="row" style="text-align: center; padding-bottom: 10px">
+            <!--div class="row" style="text-align: center; padding-bottom: 10px">
               <div class="col-xs-6">
                 <label>Name</label>
               </div>
@@ -38,8 +37,8 @@
               <div class="col-xs-6">
                 <label>Age</label>
               </div>
-              <input type="text" name="name" placeholder="Change Age" v-model="age">
-            </div>
+              <input type="text" name="age" placeholder="Change Age" v-model="age">
+            </div-->
             <div class="row" style="text-align: center;  padding-bottom: 10px">
               <div class="col-xs-6">
                 <label>Current Weight</label>
@@ -59,7 +58,7 @@
               <input type="text" name="height" placeholder="Change Height" v-model="height">
             </div>
             <div class="row" style="text-align: center">
-              <a class="btn btn-primary" href="profile" role="button"><b>Submit</b></a>
+              <button class="btn btn-primary"><b>Submit</b></button>
             </div>
             <div class="row">
               <div class="col" style="text-align: center">
@@ -101,10 +100,10 @@
               </div>
             </div>
           </div>
-
-        </form>
+      </div>
       </form>
-    </body>
+  </div>
+</body>
 
     <script>
     var homePage = new Vue({
@@ -121,7 +120,7 @@
       methods: {
         checkForm: function(e){
 
-          if(this.height && this.weight && this.target && this.name && this.height && this.age){
+          if(this.height && this.weight && this.target && this.height){
             return true;
           }
 

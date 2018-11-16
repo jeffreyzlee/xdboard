@@ -60,6 +60,8 @@ app.post('/changeSettings', (req, res) => {
 	weight = req.body.weight;
 	height = req.body.height;
 	target = req.body.target;
+	//name   = req.body.name;
+	//age    = req.body.age;
 
 	res.sendFile(__dirname + '/submit.html');
 });

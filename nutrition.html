@@ -23,15 +23,9 @@ li {
 <body>
 <div id="app">
   <div class="container">
-    <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 125%">
-      <div class="col-xs-3">
-        <b><</b>
-      </div>
-      <div class="col-xs-6" style="text-align: center">
+    <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 2vw">
+      <div class="col-xs-12" style="text-align: center" >
         <b>November 1, 2018</b>
-      </div>
-      <div class="col-xs-3" style="text-align: right">
-        <b>></b>
       </div>
     </div>
 
@@ -82,7 +76,7 @@ li {
 var homePage = new Vue({
   el: '#app',
   created: function() {
-  	var xhttp2 = new XMLHttpRequest();     
+  	var xhttp2 = new XMLHttpRequest();
     xhttp2.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         var datas = JSON.parse(xhttp2.responseText);
@@ -93,7 +87,7 @@ var homePage = new Vue({
         	homePage.fat += parseInt(datas.foodsAdded[i].fat, 10);
         	homePage.protein += parseInt(datas.foodsAdded[i].protein, 10);
         	console.log(homePage.carbs);
-        }    
+        }
         console.log(datas);
         homePage.toLoad();
       }
@@ -141,7 +135,7 @@ var homePage = new Vue({
 
 });
 
-   
+
 </script>
 
 </body>

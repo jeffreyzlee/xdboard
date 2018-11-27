@@ -1,0 +1,383 @@
+<!doctype html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>xdboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  border-bottom: 2px solid #62B6CB;
+}
+.btn-block {
+    padding: 0.1% 0;
+    /* define values in pixels / Percentage or em. whatever suits
+       your requirements */
+}
+</style>
+
+<body>
+
+<div id="app">
+  <div class="container">
+    <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 2vw">
+      <div class="col-xs-12" style="text-align: center" >
+        <b>November 1, 2018</b>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <b style="font-size: 1.5vw">Calories Remaining:</b>
+      </div>
+    </div>
+
+    <div class="row" style="text-align: center;">
+      <div class="CalText">
+        <div class="col-xs-4">
+          <div class="row">
+            <b style="font-size: 2.5vw">{{Goal}}</b>
+          </div>
+          <div class="row">
+            <p style="font-size: 1.25vw">Goal</p>
+          </div>
+        </div>
+        <div class="col-xs-1">
+          <b style="font-size: 2.5vw">-</b>
+        </div>
+        <div class="col-xs-2">
+          <div class="row">
+            <b style="font-size: 2.5vw">{{FoodTot}}</b>
+          </div>
+          <div class="row">
+            <p style="font-size: 1.25vw">Food</p>
+          </div>
+        </div>
+        <div class="col-xs-1">
+          <b style="font-size: 2.5vw">=</b>
+        </div>
+        <div class="col-xs-4">
+          <div class="row">
+            <b style="font-size: 2.5vw">{{Remaining}}</b>
+          </div>
+          <div class="row">
+            <p style="font-size: 1.25vw">Remaining</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size: 1.25vw">
+      <div class="row" style="background-color: #62B6CB; color: White;">
+        <div class="col-xs-2">
+          <b>Breakfast</b>
+        </div>
+        <!-- <div class="col-xs-1" style="float: right">
+          <a href="add?time=Breakfast"><b style="color: White"><span class="glyphicon glyphicon-plus"></span</b></a>
+        </div> -->
+      </div>
+
+      <ul id="bfastList">
+        <li v-for="item in Breakfast">
+          <div class="row">
+            <div class="col-xs-7">
+              <a :href="'foodnut?foodName=' + item.name">
+                {{item.name}} ({{item.quantity}})
+              </a>
+            </div>
+            <div class="col-xs-5" style="text-align: right;">
+              {{item.calories}} cal
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="row">
+        <div class="col-xs-12">
+           <a href="add?time=Breakfast"> <button type="button" class="btn btn-secondary btn-lg btn-block"style="background-color: #8CCBDB; color: White; font-size: 5">Add Food</button></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <b>Total</b>
+        </div>
+        <div class="col-xs-6" style="text-align: right">
+          <b>{{BreakfastTotal}}</b>
+        </div>
+      </div>
+
+      <div class="row" style="background-color: #62B6CB; color: White;">
+        <div class="col-xs-2">
+          <b>Lunch</b>
+        </div>
+        <!-- <div class="col-xs-1" style="float: right">
+          <a href="add?time=Lunch"><b style="color: White"><span class="glyphicon glyphicon-plus"></span></b></a>
+        </div> -->
+      </div>
+      <ul id="lunchList">
+        <li v-for="item in Lunch">
+          <div class="row">
+            <div class="col-xs-7">
+              <a :href="'foodnut?foodName=' + item.name">
+                {{item.name}} ({{item.quantity}})
+              </a>
+            </div>
+            <div class="col-xs-5" style="text-align: right">
+              {{item.calories}} cal
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="row">
+        <div class="col-xs-12">
+           <a href="add?time=Lunch"><button type="button" class="btn btn-secondary btn-lg btn-block"style="background-color: #8CCBDB; color: White; font-size: 5">Add Food</button></a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+          <b>Total</b>
+        </div>
+        <div class="col-xs-6" style="text-align: right">
+          <b>{{LunchTotal}}</b>
+        </div>
+      </div>
+
+      <div class="row" style="background-color: #62B6CB; color: White;">
+        <div class="col-xs-2">
+          <b>Dinner</b>
+        </div>
+        <!-- <div class="col-xs-1" style="float: right">
+          <a href="add?time=Dinner"><b style="color: White"><span class="glyphicon glyphicon-plus"></span</b></a>
+        </div> -->
+      </div>
+      <ul id="dinnerList">
+        <li v-for="item in Dinner">
+          <div class="row">
+            <div class="col-xs-7">
+              <a :href="'foodnut?foodName=' + item.name">
+                {{item.name}} ({{item.quantity}})
+              </a>
+            </div>
+            <div class="col-xs-5" style="text-align: right">
+              {{item.calories}} cal
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="row">
+        <div class="col-xs-12">
+           <a href="add?time=Dinner"><button type="button" class="btn btn-secondary btn-lg btn-block"style="background-color: #8CCBDB; color: White; font-size: 5">Add Food</button></a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+          <b>Total</b>
+        </div>
+        <div class="col-xs-6" style="text-align: right">
+          <b>{{DinnerTotal}}</b>
+        </div>
+      </div>
+
+      <div class="row" style="bottom: 0; text-align: center;">
+        <div class="col-xs-3">
+          <div class="row" style="bottom: 0; text-align: center;">
+          <a href="home"><span class="glyphicon glyphicon-home"></span></a>
+        </div>
+        <div class="row" style="bottom: 0; text-align: center;">
+          <a href="home">Home</a>
+        </div>
+      </div>
+      <div class="col-xs-3">
+        <div class="row" style="bottom: 0; text-align: center;">
+          <a href="progress"><span class="glyphicon glyphicon-stats"></span></a>
+        </div>
+        <div class="row" style="bottom: 0; text-align: center;">
+          <a href="progress">Progress</a>
+        </div>
+      </div>
+      <div class="col-xs-3">
+        <div class="row" style="bottom: 0; text-align: center;">
+          <a href="nutrition"><span class="glyphicon glyphicon-apple"></span></a>
+         </div>
+      <div class="row" style="bottom: 0; text-align: center;">
+        <a href="nutrition">Nutrition</a>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="row" style="bottom: 0; text-align: center;">
+        <a href="profile"><span class="glyphicon glyphicon-user"></span></a>
+      </div>
+      <div class="row" style="bottom: 0; text-align: center;">
+        <a href="profile">Profile</a>
+      </div>
+    </div>
+  </div>
+
+      <!--div class="row" style="bottom: 0; text-align: center;">
+        <div class="col-xs-3">
+          <a href="home">Home</a>
+        </div>
+        <div class="col-xs-3">
+          <a href="progress">Progress</a>
+        </div>
+        <div class="col-xs-3">
+          <a href="nutrition">Nutrition</a>
+        </div>
+        <div class="col-xs-3">
+          <a href="profile">Profile</a>
+        </div>
+      </div-->
+    </div>
+  </div>
+</div>
+<script>
+var homePage = new Vue({
+  el: '#app',
+  created: function() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        // Typical action to be performed when the document is ready:
+        var datas = JSON.parse(xhttp.responseText);
+        weight = parseInt(datas.weight, 10);
+        height = parseInt(datas.height, 10);
+        target = parseInt(datas.target, 10);
+
+        homePage.Goal = parseInt((66 + (13.7 * weight / 2.2) + (5 * height) - (6.8 * 21)) * 1.55, 10);
+        if(target < weight) homePage.Goal -= 500;
+        else if(target > weight) homePage.Goal += 500;
+        homePage.Remaining = homePage.Goal - homePage.FoodTot;
+      }
+    };
+
+    xhttp.open("GET", "getThings", true);
+    xhttp.send();
+
+    var xhttp2 = new XMLHttpRequest();
+    xhttp2.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var datas = JSON.parse(xhttp2.responseText);
+        var i = 0;
+        for(i = 0; i < datas.foodsAdded.length; i++){
+
+          if(datas.foodsAdded[i].time == "Dinner"){
+            homePage.Dinner.push(datas.foodsAdded[i]);
+            homePage.Dinner[homePage.Dinner.length - 1].name = homePage.Dinner[homePage.Dinner.length - 1].foodName;
+            homePage.Dinner[homePage.Dinner.length - 1].quantity = 1;
+
+            homePage.DinnerTotal += parseInt(datas.foodsAdded[i].calories, 10);
+          }
+
+          else if(datas.foodsAdded[i].time == "Lunch"){
+            homePage.Lunch.push(datas.foodsAdded[i]);
+            homePage.Lunch[homePage.Lunch.length - 1].name = homePage.Lunch[homePage.Lunch.length - 1].foodName;
+            homePage.Lunch[homePage.Lunch.length - 1].quantity = 1;
+
+            homePage.LunchTotal += parseInt(datas.foodsAdded[i].calories, 10);
+          }
+
+          else{
+            homePage.Breakfast.push(datas.foodsAdded[i]);
+            homePage.Breakfast[homePage.Breakfast.length - 1].name = homePage.Breakfast[homePage.Breakfast.length - 1].foodName;
+            homePage.Breakfast[homePage.Breakfast.length - 1].quantity = 1;
+
+            homePage.BreakfastTotal += parseInt(datas.foodsAdded[i].calories, 10);
+          }
+        }
+
+        homePage.FoodTot = homePage.DinnerTotal + homePage.LunchTotal + homePage.BreakfastTotal;
+        homePage.Remaining = homePage.Goal - homePage.FoodTot;
+
+        console.log(datas);
+      }
+    };
+
+    xhttp2.open("GET", "foodToAdd", true);
+    xhttp2.send();
+  },
+
+  mounted: function(){
+    this.addFood();
+
+    for(var i = 0; i < this.Breakfast.length; i++){
+      this.Breakfast[i].calories = (this.Breakfast[i].calories * this.Breakfast[i].quantity);
+      this.BreakfastTotal += this.Breakfast[i].calories;
+    }
+    for(var i = 0; i < this.Lunch.length; i++){
+      this.Lunch[i].calories = (this.Lunch[i].calories * this.Lunch[i].quantity);
+      this.LunchTotal += this.Lunch[i].calories;
+    }
+    for(var i = 0; i < this.Dinner.length; i++){
+      this.Dinner[i].calories = (this.Dinner[i].calories * this.Dinner[i].quantity);
+      this.DinnerTotal += this.Dinner[i].calories;
+    }
+
+    this.FoodTot = this.BreakfastTotal + this.LunchTotal + this.DinnerTotal;
+    this.Remaining = this.Goal - this.FoodTot;
+  },
+
+  data: {
+    msg: "hello",
+    Breakfast: [],
+
+    BreakfastTotal: 0,
+
+    Lunch: [],
+    LunchTotal: 0,
+
+    Dinner: [],
+    DinnerTotal: 0,
+
+    FoodTot: 0,
+    Goal: 0,
+    Remaining: 0,
+  },
+
+  methods: {
+    calTotal(item) {
+      return item.quantity * item.calories;
+    },
+
+    getUrlParameter: function(sParam){
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++){
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam){
+              return decodeURIComponent(sParameterName[1]);
+            }
+        }
+
+        return "";
+    },
+
+    addFood(){
+      var food = decodeURIComponent(this.getUrlParameter("myFood"));
+      food = food.replace("+", " ");
+      var calories = parseInt(this.getUrlParameter("calories"), 10);
+      console.log(food);
+
+      if(food == "") return;
+
+      this.Dinner.push({name: food, quantity: 1, calories});
+      this.FootTot += calories;
+      this.Remaining -= calories;
+    },
+  },
+})
+</script>
+</body>
+
+
+</html>

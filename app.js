@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const AWS = require('aws-sdk');
 
 const app = express();
+const port = 8080;
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 var docClient = new AWS.DynamoDB.DocumentClient();
@@ -21,6 +22,11 @@ var foodsAdded = [];
 app.get('/home', (req, res) => {
 	console.log(foodsAdded);
 	res.sendFile(__dirname + '/home.html');
+});
+
+app.get('/home2', (req, res) => {
+	console.log(foodsAdded);
+	res.sendFile(__dirname + '/home2.html');
 });
 
 app.get('/', (req, res) => {
@@ -121,12 +127,12 @@ app.get('/foodToAdd', (req, res) => {
 
 
 
-	
+
 });
 
 app.get('/help', (req, res) => {
 	res.sendFile(__dirname + '/help.html');
 });
 
-//app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 module.exports = app;

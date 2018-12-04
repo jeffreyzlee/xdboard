@@ -3,20 +3,36 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>xdboard</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 </head>
+<style>
+/* The navigation bar */
+.navbar {
+    background-color: #62B6CB;
+    position: fixed;
+    bottom: 0;
+}
 
+.navbar a {
+
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+}
+</style>
 <body>
-  <div id="app">
+  <div id="app" style="font-size: 1.5em">
     <div class="container-fluid">
-      <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 2vw">
+      <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 1.5em">
         <div class="col-xs-3">
         </div>
-        <div class="col-xs-6" style="text-align: center" >
+        <div class="col-xs-6" style="text-align: center">
           <b>Help Center</b>
         </div>
         <div class="col-xs-3" style="text-align: right">
@@ -102,7 +118,29 @@
       </div>
     </div>
   </div>
-  <div class="row" style="bottom: 0; text-align: center;">
+  <div class="row">
+    <div class="navbar" style="width: 100%; margin-bottom: 0; text-align: center">
+      <div class="row">
+        <div class="col-xs-3">
+          <a href="home" style="padding-top: 10%;"><span class="glyphicon glyphicon-home" style="font-size: 2em"></span></a>
+          <a href="home">Home</a>
+        </div>
+        <div class="col-xs-3">
+          <a href="home" style="padding-top: 10%;"><span class="glyphicon glyphicon-stats" style="font-size: 2em"></span></a>
+          <a href="progress">Progress</a>
+        </div>
+        <div class="col-xs-3">
+          <a href="home" style="padding-top: 10%;"><span class="glyphicon glyphicon-apple" style="font-size: 2em"></span></a>
+          <a href="nutrition">Nutrition</a>
+        </div>
+        <div class="col-xs-3">
+          <a href="home" style="padding-top: 10%;"><span class="glyphicon glyphicon-user" style="font-size: 2em"></span></a>
+          <a href="profile">Profile</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row" style="bottom: 0; text-align: center;">
     <div class="col-xs-3">
       <div class="row" style="bottom: 0; text-align: center;">
       <a href="home"><span class="glyphicon glyphicon-home"></span></a>
@@ -135,7 +173,7 @@
       <a href="profile">Profile</a>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
 </body>
 </html>

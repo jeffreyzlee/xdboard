@@ -80,52 +80,46 @@ a{
 </style>
 
 <body>
-  <br />
-  <div id="app" style="font-size: 1.5em">
-    <form @submit="checkForm" action="home" method="get">
-    <div class="container">
-    <div class="row">
+<div id="app" style="font-size: 1.5em">
+  <div class="container">
+    <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White;">
+      <div class="col-xs-3">
+        <a href="home" style="padding-left: 5px"><b style="color: White"><</b></a>
+      </div>
+      <div class="col-xs-6" style="text-align: center">
+        <b>Add Food</b>
+      </div>
+    </div>
+    <form @submit="checkForm" action="home" method="get" style="padding-top: 10px">
+    
+      <div class="row">
 
-
-      <div style="text-align: center">
-        <a href="home" style="float: left">Back</a>
-        <!--input type="text" placeholder="Search for food" style="margin-bottom: 10px"-->
-        <div class="autocomplete" style="width:300px;">
-          <input id="myInput" autocomplete="off" v-model="msg" type="text" name="myFood" placeholder="Search for food" style="margin-bottom: 10px">
+        <div style="text-align: center">
+          <!--input type="text" placeholder="Search for food" style="margin-bottom: 10px"-->
+          <div class="autocomplete" style="width:200px;">
+            <input class="form-control" id="myInput" autocomplete="off" v-model="msg" type="text" name="myFood" placeholder="Search for food" style="margin-bottom: 10px; float: center">
+          </div>
         </div>
       </div>
-    </div>
-    <!--div class="row">
-      <div class="col-xs-4" id="recent" @click="setRecentFoods"  style="border: 2px">
-        Recent
-      </div>
-      <!--div class="col-xs-4" id="frequent" @click="setFrequentFoods" style="border: 2px">
-        Frequent
-      </div>
-      <div class="col-xs-4" id="mine" @click="setMyFoods" style="border: 2px">
-        My Foods
-      </div>
-    </div-->
-    <div class="row">
-      <ul>
-        <b>
-          <li v-for="item in DisplayedFoods">
-            <a :href="'foodnut?foodName=' + item.name + '&carbs=' + item.carbs + 
-            '&protein=' + item.protein + '&fat=' + item.fat + '&calories=' + item.calories + '&time=' + time">
-              <div @click="setItem(item)">
-                {{item.name}}
-              </div>
-            </a>
-          </li>
-        </b>
-      </ul>
 
+      <div class="row">
+        <ul>
+          <b>
+            <li v-for="item in DisplayedFoods" style="border-bottom: 1px solid #62B6CB; width: 96%">
+              <a :href="'foodnut?foodName=' + item.name + '&carbs=' + item.carbs + 
+              '&protein=' + item.protein + '&fat=' + item.fat + '&calories=' + item.calories + '&time=' + time">
+                {{item.name}}
+              </a>
+            </li>
+          </b>
+        </ul>
+
+      </div>
     </div>
-  </div>
-</form>
+  </form>
 </div>
 
-  <script>
+<script>
 var homePage = new Vue({
   el: '#app',
 
@@ -165,12 +159,6 @@ var homePage = new Vue({
   },
 
   methods: {
-    setItem: function(e) {
-      //document.getElementById('myInput').value = e;
-      this.msg = e.name;
-      this.objToSend = e;
-    },
-
     setRecentFoods: function(){
       this.DisplayedFoods = this.Recentfoods;
       document.getElementById("recent").setAttribute("style", "background-color: #62B6CB;");

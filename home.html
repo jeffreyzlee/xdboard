@@ -3,10 +3,16 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>xdboard</title>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 </head>
 <style>
 ul {
@@ -18,60 +24,78 @@ ul {
 li {
   border-bottom: 2px solid #62B6CB;
 }
+
+/* The navigation bar */
+.navbar {
+    background-color: #62B6CB;
+    position: fixed; 
+    bottom: 0; 
+}
+
+.navbar a {
+
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+}
+
 </style>
 
 <body>
 
 <div id="app">
   <div class="container">
-    <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 2vw">
-      <div class="col-xs-12" style="text-align: center" >
-        <b>November 1, 2018</b>
+    <div style="font-size: 1.5em">
+      <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White;">
+        <div class="col" style="text-align: center" >
+          <b>December 3, 2018</b>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <b>Calories Remaining:</b>
+        </div>
+      </div>
+
+      <div class="row" style="text-align: center;">
+        <div class="CalText">
+          <div class="col-xs-4">
+            <div class="row">
+              <b>{{Goal}}</b>
+            </div>
+            <div class="row">
+              <p>Goal</p>
+            </div>
+          </div>
+          <div class="col-xs-1">
+            <b>-</b>
+          </div>
+          <div class="col-xs-2">
+            <div class="row">
+              <b>{{FoodTot}}</b>
+            </div>
+            <div class="row">
+              <p>Food</p>
+            </div>
+          </div>
+          <div class="col-xs-1">
+            <b>=</b>
+          </div>
+          <div class="col-xs-4">
+            <div class="row">
+              <b>{{Remaining}}</b>
+            </div>
+            <div class="row">
+              <p>Remaining</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col">
-        <b style="font-size: 1.5vw">Calories Remaining:</b>
-      </div>
-    </div>
-
-    <div class="row" style="text-align: center;">
-      <div class="CalText">
-        <div class="col-xs-4">
-          <div class="row">
-            <b style="font-size: 2.5vw">{{Goal}}</b>
-          </div>
-          <div class="row">
-            <p style="font-size: 1.25vw">Goal</p>
-          </div>
-        </div>
-        <div class="col-xs-1">
-          <b style="font-size: 2.5vw">-</b>
-        </div>
-        <div class="col-xs-2">
-          <div class="row">
-            <b style="font-size: 2.5vw">{{FoodTot}}</b>
-          </div>
-          <div class="row">
-            <p style="font-size: 1.25vw">Food</p>
-          </div>
-        </div>
-        <div class="col-xs-1">
-          <b style="font-size: 2.5vw">=</b>
-        </div>
-        <div class="col-xs-4">
-          <div class="row">
-            <b style="font-size: 2.5vw">{{Remaining}}</b>
-          </div>
-          <div class="row">
-            <p style="font-size: 1.25vw">Remaining</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div style="font-size: 1.25vw">
+    <div style="font-size: 1.5em">
       <div class="row" style="background-color: #62B6CB; color: White;">
         <div class="col-xs-2">
           <b>Breakfast</b>
@@ -110,7 +134,7 @@ li {
           <b>Lunch</b>
         </div>
         <div class="col-xs-1" style="float: right">
-          <a href="add?time=Lunch"><b style="color: White">+</b></a>
+          <a href="add?time=Lunch"><b style="color: White;">+</b></a>
         </div>
       </div>
       <ul id="lunchList">
@@ -169,58 +193,72 @@ li {
         </div>
       </div>
 
-      <div class="row" style="bottom: 0; text-align: center;">
+      <!--div class="fixed-bottom">
+        <div class="row" style="bottom: 0; text-align: center;">
+          <div class="col-xs-3">
+            <div class="row" style="bottom: 0; text-align: center;">
+            <a href="home"><span class="glyphicon glyphicon-home"></span></a>
+          </div>
+          <div class="row" style="bottom: 0; text-align: center;">
+            <a href="home">Home</a>
+          </div>
+        </div>
         <div class="col-xs-3">
           <div class="row" style="bottom: 0; text-align: center;">
-          <a href="home"><span class="glyphicon glyphicon-home"></span></a>
-        </div>
-        <div class="row" style="bottom: 0; text-align: center;">
-          <a href="home">Home</a>
-        </div>
-      </div>
-      <div class="col-xs-3">
-        <div class="row" style="bottom: 0; text-align: center;">
-          <a href="progress"><span class="glyphicon glyphicon-stats"></span></a>
-        </div>
-        <div class="row" style="bottom: 0; text-align: center;">
-          <a href="progress">Progress</a>
-        </div>
-      </div>
-      <div class="col-xs-3">
-        <div class="row" style="bottom: 0; text-align: center;">
-          <a href="nutrition"><span class="glyphicon glyphicon-apple"></span></a>
-         </div>
-      <div class="row" style="bottom: 0; text-align: center;">
-        <a href="nutrition">Nutrition</a>
-      </div>
-    </div>
-    <div class="col-xs-3">
-      <div class="row" style="bottom: 0; text-align: center;">
-        <a href="profile"><span class="glyphicon glyphicon-user"></span></a>
-      </div>
-      <div class="row" style="bottom: 0; text-align: center;">
-        <a href="profile">Profile</a>
-      </div>
-    </div>
-  </div>
-      
-      <!--div class="row" style="bottom: 0; text-align: center;">
-        <div class="col-xs-3">
-          <a href="home">Home</a>
+            <a href="progress"><span class="glyphicon glyphicon-stats"></span></a>
+          </div>
+          <div class="row" style="bottom: 0; text-align: center;">
+            <a href="progress">Progress</a>
+          </div>
         </div>
         <div class="col-xs-3">
-          <a href="progress">Progress</a>
+          <div class="row" style="bottom: 0; text-align: center;">
+            <a href="nutrition"><span class="glyphicon glyphicon-apple"></span></a>
+          </div>
+          <div class="row" style="bottom: 0; text-align: center;">
+            <a href="nutrition">Nutrition</a>
+          </div>
         </div>
         <div class="col-xs-3">
-          <a href="nutrition">Nutrition</a>
-        </div>
-        <div class="col-xs-3">
-          <a href="profile">Profile</a>
+          <div class="row" style="bottom: 0; text-align: center;">
+            <a href="profile"><span class="glyphicon glyphicon-user"></span></a>
+          </div>
+          <div class="row" style="bottom: 0; text-align: center;">
+            <a href="profile">Profile</a>
+          </div>
         </div>
       </div-->
+
+
+
+      
+    </div>
+
+    <div class="row">
+      <div class="navbar" style="width: 100%; margin-bottom: 0; text-align: center">
+        <div class="row">
+          <div class="col-xs-3">
+            <a href="home" style="padding-top: 10%;"><span class="glyphicon glyphicon-home" style="font-size: 2em"></span></a>
+            <a href="home">Home</a>
+          </div>
+          <div class="col-xs-3">
+            <a href="home" style="padding-top: 10%;"><span class="glyphicon glyphicon-stats" style="font-size: 2em"></span></a>
+            <a href="progress">Progress</a>
+          </div>
+          <div class="col-xs-3">
+            <a href="home" style="padding-top: 10%;"><span class="glyphicon glyphicon-apple" style="font-size: 2em"></span></a>
+            <a href="nutrition">Nutrition</a>
+          </div>
+          <div class="col-xs-3">
+            <a href="home" style="padding-top: 10%;"><span class="glyphicon glyphicon-user" style="font-size: 2em"></span></a>
+            <a href="profile">Profile</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
 <script>
 var homePage = new Vue({
   el: '#app',

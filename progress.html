@@ -3,6 +3,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>xdboard</title>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -24,86 +25,74 @@ ul {
 li {
   border-bottom: 2px solid #62B6CB;
 }
+
+/* The navigation bar */
+.navbar {
+    background-color: #62B6CB;
+    position: fixed; 
+    bottom: 0; 
+}
+
+.navbar a {
+
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+}
 </style>
 
 <body>
-  <div id="app">
-    <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 2vw">
-      <div class="col-xs-3">
+  <div id="app" style="font-size: 1.5em">
+    <div class="container">
+      <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White;">
+        <div class="col-xs-3">
+        </div>
+        <div class="col-xs-6" style="text-align: center" >
+          <b>Progress</b>
+        </div>
+        <div class="col-xs-3" style="text-align: right">
+        </div>
       </div>
-      <div class="col-xs-6" style="text-align: center" >
-        <b>Progress</b>
+      <div class="row">
+        <div class="col" style="text-align: center">
+          <br />
+        </div>
       </div>
-      <div class="col-xs-3" style="text-align: right">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col" style="text-align: center">
-        <br />
-      </div>
-    </div>
-    <div id="chart_div"></div>
+      <div id="chart_div"></div>
 
-    <div class="form-group" style="width: 25%; margin: auto;">
-      <form onsubmit="addPoint()">
-        <label for="exampleInputPassword1">Add weight</label>
-        <input type="input" v-model="weight" class="form-control" id="exampleInputPassword1" placeholder="123...">
-        <button type="button" @click.prevent="addPoint()" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
+      <div class="form-group" style="width: 25%; margin: auto;">
+        <form onsubmit="addPoint()">
+          <label for="exampleInputPassword1">Add weight</label>
+          <input type="input" v-model="weight" class="form-control" id="exampleInputPassword1" placeholder="123...">
+          <button type="button" @click.prevent="addPoint()" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
 
-    <br />
-
-    <div class="row" style="bottom: 0; text-align: center;">
-      <div class="col-xs-3">
-        <div class="row" style="bottom: 0; text-align: center;">
-          <a href="home"><span class="glyphicon glyphicon-home"></span></a>
-        </div>
-        <div class="row" style="bottom: 0; text-align: center;">
-          <a href="home">Home</a>
-        </div>
-      </div>
-      <div class="col-xs-3">
-        <div class="row" style="bottom: 0; text-align: center;">
-          <a href="progress"><span class="glyphicon glyphicon-stats"></span></a>
-        </div>
-        <div class="row" style="bottom: 0; text-align: center;">
-          <a href="progress">Progress</a>
-        </div>
-      </div>
-      <div class="col-xs-3">
-        <div class="row" style="bottom: 0; text-align: center;">
-          <a href="nutrition"><span class="glyphicon glyphicon-apple"></span></a>
-        </div>
-        <div class="row" style="bottom: 0; text-align: center;">
-          <a href="nutrition">Nutrition</a>
-        </div>
-      </div>
-      <div class="col-xs-3">
-        <div class="row" style="bottom: 0; text-align: center;">
-          <a href="profile"><span class="glyphicon glyphicon-user"></span></a>
-        </div>
-        <div class="row" style="bottom: 0; text-align: center;">
-          <a href="profile">Profile</a>
+      <div class="row">
+        <div class="navbar" style="width: 100%; margin-bottom: 0; text-align: center">
+          <div class="row">
+            <div class="col-xs-3">
+              <a href="home" style="padding-top: 10%;"><span class="glyphicon glyphicon-home" style="font-size: 2em"></span></a>
+              <a href="home">Home</a>
+            </div>
+            <div class="col-xs-3">
+              <a href="home" style="padding-top: 10%;"><span class="glyphicon glyphicon-stats" style="font-size: 2em"></span></a>
+              <a href="progress">Progress</a>
+            </div>
+            <div class="col-xs-3">
+              <a href="home" style="padding-top: 10%;"><span class="glyphicon glyphicon-apple" style="font-size: 2em"></span></a>
+              <a href="nutrition">Nutrition</a>
+            </div>
+            <div class="col-xs-3">
+              <a href="home" style="padding-top: 10%;"><span class="glyphicon glyphicon-user" style="font-size: 2em"></span></a>
+              <a href="profile">Profile</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <!--div class="row" style="bottom: 0; text-align: center">
-      <div class="col-xs-3">
-        <a href="home">Home</a>
-      </div>
-      <div class="col-xs-3">
-        <a href="progress">Progress</a>
-      </div>
-      <div class="col-xs-3">
-        <a href="nutrition">Nutrition</a>
-      </div>
-      <div class="col-xs-3">
-        <a href="profile">Profile</a>
-      </div>
-    </div-->
-
-</div>
+  </div>
 
     <script>
     google.charts.load('current', {packages: ['corechart', 'line']});

@@ -7,7 +7,8 @@
   <title>xdboard</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <!-- <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 </head>
 <style>
@@ -29,7 +30,7 @@
 <body>
   <div id="app" style="font-size: 1.5em">
     <div class="container-fluid">
-      <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 1.5em">
+      <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 100%">
         <div class="col-xs-3">
         </div>
         <div class="col-xs-6" style="text-align: center">
@@ -71,7 +72,7 @@
       display: inline-block;
       cursor: pointer;
       font-weight: bold;
-      font-size: 25px;
+      font-size: 20px;
     }
 
     .faq_answer_container {
@@ -84,7 +85,7 @@
       padding: 0px 0px 5px 0px;
       display: inline-block;
       cursor: pointer;
-      font-size: 20px;
+      font-size: 15px;
     }
   </style>
 
@@ -93,7 +94,8 @@
       <div class="faq_question">How do I change my profile information?</div>
       <div class="faq_answer_container">
         <div class="faq_answer">You can change your target weight and profile information
-           in the profile page of the app by clicking on the "Edit Profile" button.</div>
+           in the profile page of the app by clicking on the gear icon button
+           that is in the upper right corner.</div>
       </div>
     </div>
     <div class="faq">
@@ -112,9 +114,20 @@
           It will take you to the add food page and you can search for the food you can add.</div>
       </div>
     </div>
-    <div class="row">
-      <div class="col" style="text-align: center">
-        <br />
+    <div class="faq">
+      <div class="faq_question">How do I track my weight progress?</div>
+      <div class="faq_answer_container">
+        <div class="faq_answer">On the progress page there is a graph of your weight progress.
+        Whenever you would like to update your weight progress just enter your new weights
+      in the add weight box and hit the submit button.</div>
+      </div>
+    </div>
+    <div class="faq">
+      <div class="faq_question">What is the nutrition page for?</div>
+      <div class="faq_answer_container">
+        <div class="faq_answer">The nutrition page keeps track of your macronutrient breakdown
+        of all the foods you have eaten for that day. It will show what percentages of the foods
+        that you have eaten are of protein, fat and carbohydrates. </div>
       </div>
     </div>
   </div>

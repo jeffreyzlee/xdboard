@@ -43,32 +43,34 @@ li {
 </style>
 
 <body>
-  <div id="app" style="font-size: 1.5em">
+  <div id="app">
     <div class="container">
-      <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White;">
-        <div class="col-xs-3">
+      <div style="font-size: 1.5em">
+        <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White;">
+          <div class="col-xs-3">
+          </div>
+          <div class="col-xs-6" style="text-align: center" >
+            <b>Progress</b>
+          </div>
+          <div class="col-xs-3" style="text-align: right">
+          </div>
         </div>
-        <div class="col-xs-6" style="text-align: center" >
-          <b>Progress</b>
+        <div class="row">
+          <div class="col" style="text-align: center">
+            <br />
+          </div>
         </div>
-        <div class="col-xs-3" style="text-align: right">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col" style="text-align: center">
-          <br />
-        </div>
-      </div>
-      <div id="chart_div"></div>
+        <div id="chart_div"></div>
 
-      <div class="form-group" style="width: 35%; margin: auto;">
-        <form onsubmit="addPoint()">
-          <label for="exampleInputPassword1">Add Weight</label>
-          <input type="input" v-model="weight" class="form-control" id="exampleInputPassword1" placeholder="123...">
+        <div class="form-group" style="width: 35%; margin: auto;">
+          <form onsubmit="addPoint()">
+            <label for="exampleInputPassword1">Add Weight</label>
+            <input type="input" v-model="weight" class="form-control" id="exampleInputPassword1" placeholder="123...">
             <div class="row-xs-3" style="text-align: center; padding-top: 5px">
-          <button type="button" @click.prevent="addPoint()" class="btn btn-info">Submit</button>
-        </form>
-      </div>
+              <button type="button" @click.prevent="addPoint()" class="btn btn-info">Submit</button>
+            </div>
+          </form>
+        </div>
       </div>
 
       <div class="row">
@@ -79,15 +81,15 @@ li {
               <a href="home">Home</a>
             </div>
             <div class="col-xs-3">
-              <a href="home" style="padding-top: 10%;"><span class="glyphicon glyphicon-stats" style="font-size: 2em"></span></a>
+              <a href="progress" style="padding-top: 10%;"><span class="glyphicon glyphicon-stats" style="font-size: 2em"></span></a>
               <a href="progress">Progress</a>
             </div>
             <div class="col-xs-3">
-              <a href="home" style="padding-top: 10%;"><span class="glyphicon glyphicon-apple" style="font-size: 2em"></span></a>
+              <a href="nutrition" style="padding-top: 10%;"><span class="glyphicon glyphicon-apple" style="font-size: 2em"></span></a>
               <a href="nutrition">Nutrition</a>
             </div>
             <div class="col-xs-3">
-              <a href="home" style="padding-top: 10%;"><span class="glyphicon glyphicon-user" style="font-size: 2em"></span></a>
+              <a href="profile" style="padding-top: 10%;"><span class="glyphicon glyphicon-user" style="font-size: 2em"></span></a>
               <a href="profile">Profile</a>
             </div>
           </div>

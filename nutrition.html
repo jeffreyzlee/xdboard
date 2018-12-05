@@ -36,38 +36,40 @@ li {
 </style>
 
 <body>
-  <div id="app" style="font-size: 1.5em">
+  <div id="app">
     <div class="container">
-      <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 1.5em">
-        <div class="col-xs-12" style="text-align: center" >
-          <b>November 1, 2018</b>
+      <div style="font-size: 1.5em">
+        <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White; font-size: 1.5em">
+          <div class="col-xs-12" style="text-align: center" >
+            <b>Nutrition</b>
+          </div>
         </div>
-      </div>
 
-      <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-      <div class ="col-xs-12">
-        <div class="row">
-          <div class="col-xs-6 col-xs-offset-2" style="text-align: right">
-            <label>Carbohydrates</label>
+        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        <div class ="col-xs-12">
+          <div class="row">
+            <div class="col-xs-6 col-xs-offset-2" style="text-align: right">
+              <label>Carbohydrates</label>
+            </div>
+            <div class="col-xs-4" style="text-align: left">
+              <p>{{carbs}}g</p>
+            </div>
           </div>
-          <div class="col-xs-4" style="text-align: left">
-            <p>{{carbs}}g</p>
+          <div class="row">
+            <div class="col-xs-6 col-xs-offset-2" style="text-align: right">
+              <label>Protein</label>
+            </div>
+            <div class="col-xs-4" style="text-align: left">
+              <p>{{protein}}g</p>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6 col-xs-offset-2" style="text-align: right">
-            <label>Protein</label>
-          </div>
-          <div class="col-xs-4" style="text-align: left">
-            <p>{{protein}}g</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6 col-xs-offset-2" style="text-align: right">
-            <label>Fats</label>
-          </div>
-          <div class="col-xs-4" style="text-align: left">
-            <p>{{fat}}g</p>
+          <div class="row">
+            <div class="col-xs-6 col-xs-offset-2" style="text-align: right">
+              <label>Fats</label>
+            </div>
+            <div class="col-xs-4" style="text-align: left">
+              <p>{{fat}}g</p>
+            </div>
           </div>
         </div>
       </div>
@@ -97,43 +99,6 @@ li {
     </div>
   </div>
 
-        <!-- <div class="row" style="bottom: 0; text-align: center;">
-        <div class="col-xs-3">
-        <div class="row" style="bottom: 0; text-align: center;">
-        <a href="home"><span class="glyphicon glyphicon-home"></span></a>
-      </div>
-      <div class="row" style="bottom: 0; text-align: center;">
-      <a href="home">Home</a>
-    </div>
-  </div>
-  <div class="col-xs-3">
-  <div class="row" style="bottom: 0; text-align: center;">
-  <a href="progress"><span class="glyphicon glyphicon-stats"></span></a>
-</div>
-<div class="row" style="bottom: 0; text-align: center;">
-<a href="progress">Progress</a>
-</div>
-</div>
-<div class="col-xs-3">
-<div class="row" style="bottom: 0; text-align: center;">
-<a href="nutrition"><span class="glyphicon glyphicon-apple"></span></a>
-</div>
-<div class="row" style="bottom: 0; text-align: center;">
-<a href="nutrition">Nutrition</a>
-</div>
-</div>
-<div class="col-xs-3">
-<div class="row" style="bottom: 0; text-align: center;">
-<a href="profile"><span class="glyphicon glyphicon-user"></span></a>
-</div>
-<div class="row" style="bottom: 0; text-align: center;">
-<a href="profile">Profile</a>
-</div>
-</div>
-</div> -->
-
-
-
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
 var homePage = new Vue({
@@ -149,9 +114,7 @@ var homePage = new Vue({
           homePage.carbs += parseInt(datas.foodsAdded[i].carbs, 10);
           homePage.fat += parseInt(datas.foodsAdded[i].fat, 10);
           homePage.protein += parseInt(datas.foodsAdded[i].protein, 10);
-          console.log(homePage.carbs);
         }
-        console.log(datas);
         homePage.toLoad();
       }
     };
@@ -183,12 +146,9 @@ var homePage = new Vue({
           yValueFormatString: "##0\"%\"",
           indexLabel: "{label} {y}",
           dataPoints: [
-            //{y: 67, label: "Carbs"},
-            //{y: 8, label: "Fat"},
-            //{y: 25, label: "Protein"}
             {y: (this.carbs * 100) / (this.carbs + this.protein + this.fat), label: "Carbs"},
-            {y: (this.protein * 100) / (this.carbs + this.protein + this.fat), label: "Fat"},
-            {y: (this.fat * 100) / (this.carbs + this.protein + this.fat), label: "Protein"}
+            {y: (this.fat * 100) / (this.carbs + this.protein + this.fat), label: "Fat"},
+            {y: (this.protein * 100) / (this.carbs + this.protein + this.fat), label: "Protein"}
           ]
         }]
       });

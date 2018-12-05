@@ -27,129 +27,79 @@
 </style>
 
 <body>
-  <div id="app" style="font-size: 1.5em">
-  <div class="container-fluid">
-    <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White;">
-      <div class="col-xs-3">
-      </div>
-      <div class="col-xs-6" style="text-align: center" >
-        <b>Profile</b>
-      </div>
-      <div class="col-xs-3" style="text-align: right">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col" style="text-align: center">
-        <br />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-4" style="text-align: center">
-        <br />
-      </div>
-      <div class="col-xs-4" style="text-align: center">
-        <img src="https://i.stack.imgur.com/YQu5k.png" alt="" style="width:100px;height:100px;">
-      </div>
-      <div class="col-xs-4" style="text-align: center">
-        <div class="row-xs-3" style="text-align: center">
-          <a href="help"><span class="glyphicon glyphicon-question-sign">&#160;</span></a>
-            <b>    </b>
-          <a href="settings"><span class="glyphicon glyphicon-cog"></span></a>
-        </div>
-        <div class="row-xs-3" style="text-align: center">
-          <br />
-        </div>
-        <div class="row-xs-3" style="text-align: center">
-          <a class="btn btn-info" href="/latest" role="button"><b>Logout</b></a>
-        </div>
-        <div class="row-xs-3" style="text-align: center">
-          <br />
-        </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3" style="text-align: center">
-        <br />
-      </div>
-    </div>
-    <div class ="col-xs-12">
-      <div class="row" style="text-align: left">
-        <div class="col-xs-3" style="text-align: center">
-          <br />
-        </div>
-        <div class="col-xs-3" style="text-align: right">
-          <label>Name</label>
-        </div>
-        <div class="col-xs-3" style="text-align: left">
-          <p>{{name}}</p>
-        </div>
-        <div class="col-xs-3" style="text-align: center">
-          <br />
+<div id="app">
+  <div class="container">
+    <div style="font-size: 1.5em">
+      <div class="row" id="headerDivider" style="background-color: #62B6CB; color: White;">
+        <div class="col-xs-12" style="text-align: center" >
+          <b>Profile</b>
         </div>
       </div>
-      <div class="row" style="text-align: left">
-        <div class="col-xs-3" style="text-align: center">
-          <br />
-        </div>
-        <div class="col-xs-3" style="text-align: right">
-          <label>Gender</label>
-        </div>
-        <div class="col-xs-3" style="text-align: left">
-          <p>{{gender}}</p>
-        </div>
-        <div class="col-xs-3" style="text-align: center">
-          <br />
-        </div>
-      </div>
-      <div class="row" style="text-align: left">
-        <div class="col-xs-3" style="text-align: center">
-          <br />
-        </div>
-        <div class="col-xs-3" style="text-align: right">
-          <label>Age</label>
-        </div>
-        <div class="col-xs-3" style="text-align: left">
-          <p>{{age}}</p>
-        </div>
-        <div class="col-xs-3" style="text-align: center">
-          <br />
-        </div>
-      </div>
-      <div class="row" style="text-align: left">
-        <div class="col-xs-3" style="text-align: center">
-          <br />
-        </div>
-        <div class="col-xs-3" style="text-align: right">
-          <label>Current Weight (in lbs)</label>
-        </div>
-        <div class="col-xs-3" style="text-align: left">
-          <p>{{weight}}</p>
-        </div>
-        <div class="col-xs-3" style="text-align: center">
-          <br />
-        </div>
-      </div>
-      <div class="row" style="text-align: left">
-        <div class="col-xs-3" style="text-align: center">
-          <br />
-        </div>
-        <div class="col-xs-3" style="text-align: right">
-          <label>Height (in inches)</label>
-        </div>
-        <div class="col-xs-3" style="text-align: left">
-          <p>{{height}}</p>
-        </div>
-        <div class="col-xs-3" style="text-align: center">
-          <br />
-        </div>
-      </div>
+      <br>
       <div class="row">
-        <div class="col" style="text-align: center">
-          <br />
+        <div class="col-xs-4 col-xs-offset-4" style="text-align: center">
+          <img src="https://i.stack.imgur.com/YQu5k.png" alt="" style="width:100px;height:100px;">
+        </div>
+        <div class="col-xs-4" style="text-align: center">
+          <div class="row" style="text-align: center">
+            <a href="help"><span class="glyphicon glyphicon-question-sign">&#160;</span></a>
+              <b>    </b>
+            <a href="settings"><span class="glyphicon glyphicon-cog"></span></a>
+          </div>
+          <div class="row" style="text-align: center">
+            <a class="btn btn-info" href="/latest" role="button"><b>Logout</b></a>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        
+        <div class="col-xs-12">
+          <div class="row" style="text-align: left">
+            <div class="col-xs-6" style="text-align: right">
+              <label>Name</label>
+            </div>
+            <div class="col-xs-6" style="text-align: left">
+              <p>{{name}}</p>
+            </div>
+          </div>
+          <div class="row" style="text-align: left">
+            <div class="col-xs-6" style="text-align: right">
+              <label>Gender</label>
+            </div>
+            <div class="col-xs-6" style="text-align: left">
+              <p>{{gender}}</p>
+            </div>
+          </div>
+          <div class="row" style="text-align: left">
+            <div class="col-xs-6" style="text-align: right">
+              <label>Age</label>
+            </div>
+            <div class="col-xs-6" style="text-align: left">
+              <p>{{age}}</p>
+            </div>
+          </div>
+          <div class="row" style="text-align: left">
+            <div class="col-xs-6" style="text-align: right">
+              <label>Current Weight</label>
+            </div>
+            <div class="col-xs-6" style="text-align: left">
+              <p>{{weight}} lbs</p>
+            </div>
+          </div>
+          <div class="row" style="text-align: left">
+            <div class="col-xs-6" style="text-align: right">
+              <label>Height</label>
+            </div>
+            <div class="col-xs-6" style="text-align: left">
+              <p>{{height}} cm</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
+
+    <div class="row">
       <div class="navbar" style="width: 100%; margin-bottom: 0; text-align: center">
         <div class="row">
           <div class="col-xs-3">
@@ -171,21 +121,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="row" style="text-align: center;">
-      <div class="col-xs-3">
-        <a class="btn btn-info" href="home" role="button"><b>Home</b></a>
-      </div>
-      <div class="col-xs-3">
-        <a class="btn btn-info" href="settings" role="button"><b>Edit Profile</b></a>
-      </div>
-      <div class="col-xs-3">
-        <a class="btn btn-info" href="help" role="button"><b>Get Help</b></a>
-      </div>
-      <div class="col-xs-3">
-        <a class="btn btn-info" href="index" role="button"><b>Logout</b></a>
-      </div>
-    </div> -->
   </div>
 </div>
 </body>
